@@ -14,23 +14,23 @@ varies accross the years. This would let us know if the beer success at some tim
 
 
 # Research Questions
-## World region
+## `Task 1:` World region
 - Base the analysis for different region of the world. Make sure to take into account the hemisphere when evaluating for the season.
 - mouais --> better to specialize on one kind of countries !!
 
-## Season-dependent beer (e.g: beer almost exclusively drank during one season)
+## `Task 2:` Season-dependent beer (e.g: beer almost exclusively drank during one season)
 - Is a beer more incline to be consumed at one time of the year ? 
 
-## Ephemere and long-lasting season dependent beers
+## `Task 3:` Ephemere and long-lasting season dependent beers
 - Do some beers only follow one season trend and would then be forgotten in the next years ?
 
-## Features of season-dependent beers
+## `Task 4:` Features of season-dependent beers
 - Which characteristics of a beer makes it to be more a spring-beer or a fall-beer ?
 
-## Drinking at the wrong season 
+## `Task 5:` Drinking at the wrong season 
 - Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
 
-## Professional vs Occasional drinker
+## `Task 6:` Professional vs Occasional drinker
 - Isolate group A from B and re-run all the analysis to see wether or not there is improvement in our analysis without the group A.
 
 ## ??
@@ -47,27 +47,24 @@ sentimental analysis of comments in order to grade the comments with a high posi
 https://huggingface.co/tasks/text-classification
 
 ## Proposed timeline
-| Week Nbr | 10 | 11 | 12 | 13 | 14 |
-|----------|----|----|----|----|----|
-| Task     | A  | B
 beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
 --> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
 of the comments --> beer trends description
 
-## Organization within the team
-
 ```mermaid
-journey
-	title Me studying for exams
-	section Exam is announced
-		I start studying: 1: Me
-		Make notes: 2: Me
-		Ask friend for help: 3: Me, Friend
-		We study togther: 5: Me, Friend
-	section Exam Day
-		Syllabys is incomplete: 2: Me
-		Give exam: 1: Me, Friend
-	section Result Declared
-		I passed the exam with destinction!: 5: Me
-		Friend barely gets passing marks: 2: Friend
+gantt
+    title ChatChuiPT
+    dateFormat MM-DD
+	axisFormat %m-%d
+
+	section Part A
+		Identify S.D.B                     :t1, 11-17, 1w
+		Identify ephemere S.D.B.           :after t1, 1w
+		Wrong season ratings               :after t1, 1w
+		Features of S.D.B                  :t2,after t1, 1w
+    section Part B
+		Identify Group A from B	                 :t3, 11-17, 1w
+		Rerun plots w/o grp A                    :after t2, 1w
+	section Report
+		Website, redaction                       :end, 12-08, 2w
 ```
