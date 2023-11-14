@@ -46,6 +46,41 @@ correlation between senitmental analysis of comments and ratings ?
 sentimental analysis of comments in order to grade the comments with a high positivity etc for example with the site : 
 https://huggingface.co/tasks/text-classification
 
+# 
+1. Libraries (pandas; matplotlib)
+2. Import libraries
+3. Load the data --> convert to .txt to .csv, Cache the data, Load the cached data
+4. Idea of project (2,3 phrases)
+   
+# START ANALYSIS - PREPROSSING
+1. Table with dataframe dimension for BA & RB  --> .head(1) (donc 4*2 )
+2. Merge data --> user_rating (for both just the necessary)
+3. pd_todatatime + add column 'month' & 'year'
+4. dropna for column in
+BA : 'location', 'appearance', 'aroma', 'palate', 'taste', 'overall'
+RB : 'location'
+5. Plot world map, Users locations distribution --> **better distribution on RB**
+6. Different coef for the ratings calculation for each site --> **better weight distribution on BA**
+--> to have a better comparaison of ratings between each site compare the criteria **'overall'**
+7. _Justification for the sake of simplicity analysis of the dataset RB_
+8. Top review style 
+
+# Problems 
+1. 
+# 
+
+# To do 
+1. How to merge RB & BA
+   1.1. Filter the data RB & BA only from USA
+   1.2. Observe the top 100 beer style for each
+   1.3. Adjust into the same beer style name for the previous top 100
+   1.4. Merge RB & BA based on these top 100 beer style name && drop same review
+ 
+ 
+
+# additional remarks 
+1. 
+
 ## Proposed timeline
 | Week Nbr | 10 | 11 | 12 | 13 | 14 |
 |----------|----|----|----|----|----|
