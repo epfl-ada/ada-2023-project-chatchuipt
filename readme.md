@@ -34,7 +34,6 @@ varies accross the years. This would let us know if the beer success at some tim
 - Isolate group A from B and re-run all the analysis to see wether or not there is improvement in our analysis without the group A.
 
 ## ??
-- Do people consume one type of beer more due to its better taste than usual ? 
 - Are the rating of the beer and the commentary given for it in adequation to each others ?
 
 # Proposed additional datasets (if any) 
@@ -57,3 +56,18 @@ of the comments --> beer trends description
 
 ## Organization within the team
 
+```mermaid
+journey
+	title Me studying for exams
+	section Exam is announced
+		I start studying: 1: Me
+		Make notes: 2: Me
+		Ask friend for help: 3: Me, Friend
+		We study togther: 5: Me, Friend
+	section Exam Day
+		Syllabys is incomplete: 2: Me
+		Give exam: 1: Me, Friend
+	section Result Declared
+		I passed the exam with destinction!: 5: Me
+		Friend barely gets passing marks: 2: Friend
+```
