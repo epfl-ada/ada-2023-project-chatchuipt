@@ -87,11 +87,11 @@ _Argument for why we choosed RB dataset_
 
  ## Tasks
 
- Adrien : notebook 
- Theo : Readme
- Antoine : Readme
- Kamil : notebook
- Shujiro : notebook 
+ | Adrien | notebook |
+ | Theo | Readme |
+ | Antoine | Readme |
+ | Kamil | notebook |
+ | Shujiro | notebook |
  
 
 ## Proposed timeline
