@@ -46,7 +46,9 @@ correlation between senitmental analysis of comments and ratings ?
 sentimental analysis of comments in order to grade the comments with a high positivity etc for example with the site : 
 https://huggingface.co/tasks/text-classification
 
-
+_______________________________
+_______________________________
+### A ENLEVER LORS DU SUBMIT
 ## To write on the NoteBook
 # 
 1. Libraries (pandas; matplotlib)
@@ -96,7 +98,9 @@ _Argument for why we choosed RB dataset_
  | Kamil   | notebook |
  |---------|----------|
  | Shujiro | notebook |
- 
+
+ _______________________________
+ _______________________________
 
 ## Proposed timeline
 | Week Nbr | 10 | 11 | 12 | 13 | 14 |
