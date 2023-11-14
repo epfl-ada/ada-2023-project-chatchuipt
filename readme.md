@@ -86,11 +86,14 @@ _Argument for why we choosed RB dataset_
    1.4. Merge RB & BA based on these top 100 beer style name && drop same review
 
  ## Tasks
-
  | Adrien | notebook |
+ 
  | Theo | Readme |
+ 
  | Antoine | Readme |
+ 
  | Kamil | notebook |
+ 
  | Shujiro | notebook |
  
 
