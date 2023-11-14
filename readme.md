@@ -60,18 +60,25 @@ https://huggingface.co/tasks/text-classification
 BA : 'location', 'appearance', 'aroma', 'palate', 'taste', 'overall'
 RB : 'location'
 5. Analysis of RB & BA differencies
+
    5.1. Plot world map, Users locations distribution --> **better distribution on RB**
+
    5.2. Different coef for the ratings calculation for each site --> **better weight distribution on BA**
    	--> to have a better comparaison of ratings between each site compare the criteria **'overall'**
+
    5.3. Top review style --> differente 'beer_style' name
 _Argument for why we choosed RB dataset_
-6. Plot tendencies 
+7. Plot tendencies 
 
 # To do 
 1. How to merge RB & BA
+
    1.1. Filter the data RB & BA only from USA
+
    1.2. Observe the top 100 beer style for each
+
    1.3. Adjust into the same beer style name for the previous top 100
+
    1.4. Merge RB & BA based on these top 100 beer style name && drop same review
  
  
