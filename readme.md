@@ -87,6 +87,8 @@ _Argument for why we choosed RB dataset_
 
    1.4. Merge RB & BA based on these top 100 beer style name && drop same review
 
+2. Create a bar chart race animation to visualize popularities of beer_style or quite simply beer_name over the time
+
  ## Tasks
  
  | Adrien  | notebook |
