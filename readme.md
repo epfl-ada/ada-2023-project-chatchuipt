@@ -59,15 +59,13 @@ https://huggingface.co/tasks/text-classification
 4. dropna for column in
 BA : 'location', 'appearance', 'aroma', 'palate', 'taste', 'overall'
 RB : 'location'
-5. Plot world map, Users locations distribution --> **better distribution on RB**
-6. Different coef for the ratings calculation for each site --> **better weight distribution on BA**
---> to have a better comparaison of ratings between each site compare the criteria **'overall'**
-7. _Justification for the sake of simplicity analysis of the dataset RB_
-8. Top review style 
-
-# Problems 
-1. 
-# 
+5. Analysis of RB & BA differencies
+   5.1. Plot world map, Users locations distribution --> **better distribution on RB**
+   5.2. Different coef for the ratings calculation for each site --> **better weight distribution on BA**
+   	--> to have a better comparaison of ratings between each site compare the criteria **'overall'**
+   5.3. Top review style --> differente 'beer_style' name
+_Argument for why we choosed RB dataset_
+6. Plot tendencies 
 
 # To do 
 1. How to merge RB & BA
@@ -77,9 +75,6 @@ RB : 'location'
    1.4. Merge RB & BA based on these top 100 beer style name && drop same review
  
  
-
-# additional remarks 
-1. 
 
 ## Proposed timeline
 | Week Nbr | 10 | 11 | 12 | 13 | 14 |
