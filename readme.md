@@ -1,5 +1,4 @@
 # Every Season is Beerable
-
 # Abstract
 - This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different
 beers based on its mood or feeling influenced by the season. A study of a high variety of beers may helps to see if some beers
@@ -15,24 +14,33 @@ varies accross the years. This would let us know if the beer success at some tim
 
 
 # Research Questions
+## World region
+- Base the analysis for different region of the world. Make sure to take into account the hemisphere when evaluating for the season.
+- mouais --> better to specialize on one kind of countries !!
 
-add analysis for diff countries ? mouais --> better to specialize on one kind of countries !!
+## Season-dependent beer (e.g: beer almost exclusively drank during one season)
+- Is a beer more incline to be consumed at one time of the year ? 
 
-Is a beer more incline to be consumed at one time of the year ? 
+## Ephemere and long-lasting season dependent beers
+- Do some beers only follow one season trend and would then be forgotten in the next years ?
 
-Which characteristics of a beer makes it to be more a spring-beer or a fall-beer ?
+## Features of season-dependent beers
+- Which characteristics of a beer makes it to be more a spring-beer or a fall-beer ?
 
-Do people consume one type of beer more due to its better taste than usual ? 
+## Drinking at the wrong season 
+- Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
 
-Are the rating of the beer and the commentary given for it in adequation to each others ?
+## Professional vs Occasional drinker
+- Isolate group A from B and re-run all the analysis to see wether or not there is improvement in our analysis without the group A.
 
-Do some beers only follow some one season trend and would then be forgotten in the next years ?
+## ??
+- Do people consume one type of beer more due to its better taste than usual ? 
+- Are the rating of the beer and the commentary given for it in adequation to each others ?
 
-## Proposed additional datasets (if any) 
+# Proposed additional datasets (if any) 
+- No additional dataset to provide, complete dataset !
 
-No additional dataset to provide, complete dataset !
-
-## Methods
+# Methods
 
 Graphs plotting for different kind of beers, evolution accross time, evolution between years by superposition, ...
 correlation between senitmental analysis of comments and ratings ?
@@ -40,7 +48,9 @@ sentimental analysis of comments in order to grade the comments with a high posi
 https://huggingface.co/tasks/text-classification
 
 ## Proposed timeline
-
+| Week Nbr | 10 | 11 | 12 | 13 | 14 |
+|----------|----|----|----|----|----|
+| Task     | A  | B
 beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
 --> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
 of the comments --> beer trends description
