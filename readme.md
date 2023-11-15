@@ -51,6 +51,30 @@ beers variety accross seasons --> id kind of beers --> compare characteristics -
 --> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
 of the comments --> beer trends description
 
+## Summary 
+### 0. Load the cached data
+### 1. Pre-processing datasets for BeerAdvocate and RateBeer
+- 1.1 Merge users and ratings to obtain location of each rating especially
+- 1.2 Change the date format and isolate month and year
+### 2. Data Cleaning 
+- 2.1 Remove unrelevant columns/duplicates
+- 2.2 Identification of columns that have missing values
+- 2.3 Replace abv (alcohol degree) missing values by the average abv of the corresponding beer style
+- 2.4 Drop NaN for location -> remove ratings where location is not mentioned
+### 3. Compare RateBeers and BeerAdvocate
+- 3.1 Distribution of ratings and reviews between BeerAdvocate and RateBeer
+- 3.2 Are raters also writers? Check nbr of reviews compared to nbr of ratings
+- 3.3 New column: country, to remove states in USA
+- 3.4 Plot contribution of different countries in the % of ratings in Beer Advocate and RateBeer
+- 3.5 Mapping of ratings
+- 3.6 What is the most rated style the whole world (in RateBeer)?
+- 3.7 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
+- 3.8 Do we have users in common for both datasets?
+### 4. Exploration of the dataset RateBeer: Seasonal tendancies?
+- 4.1 Distribution of ratings per month for all beers
+- 4.2 Distribution of IPA, Pilsner and Belgian Strong Ale reviews normalized according to total number of reviews
+- 4.3 Distribution of alcohol degree among beers compared to ratings -> do people drink a lot of strong beers?
+  
 ```mermaid
 gantt
     title ChatChuiPT
