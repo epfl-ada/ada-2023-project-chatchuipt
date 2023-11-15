@@ -53,7 +53,7 @@ treatments were performed on them. For the alcohol degree (abv index), the missi
 degree of the corresponding beer style. As a rating without location is unuseful and this missing value cannot be estimated,
 the NaNs of the location feature were removed.
 
-After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. Firstly the distributions of the ratings were
+- After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. Firstly the distributions of the ratings were
 compared. Are raters also writers? ???. After seeing that the USA users tended to consume a lower diversity of beers, we 
 added the column country to the table in order to remove those consummers. To identify the most implicated countries, 
 we plotted thecontribution of different countries in the % of ratings in Beer Advocate and RateBeer and mapped those percentages.
