@@ -14,9 +14,15 @@ varies accross the years. This would let us know if the beer success at some tim
 
 
 # Research Questions
+	Identify S.D.B
+	Identify ephemere S.D.B.
+	Wrong season ratings
+	Features of S.D.B
+    Identify Group A from B
+	Rerun plots w/o grp A
+
 ## `Task 1:` World region
 - Base the analysis for different region of the world. Make sure to take into account the hemisphere when evaluating for the season.
-- mouais --> better to specialize on one kind of countries !!
 
 ## `Task 2:` Season-dependent beer (e.g: beer almost exclusively drank during one season)
 - Is a beer more incline to be consumed at one time of the year ? 
@@ -47,10 +53,6 @@ sentimental analysis of comments in order to grade the comments with a high posi
 https://huggingface.co/tasks/text-classification
 
 ## Proposed timeline
-beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
---> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
-of the comments --> beer trends description
-
 ```mermaid
 gantt
     title ChatChuiPT
@@ -61,10 +63,14 @@ gantt
 		Identify S.D.B                     :t1, 11-17, 1w
 		Identify ephemere S.D.B.           :after t1, 1w
 		Wrong season ratings               :after t1, 1w
-		Features of S.D.B                  :t2,after t1, 1w
+		Features of S.D.B                  :after t1, 1w
     section Part B
-		Identify Group A from B	                 :t3, 11-17, 1w
-		Rerun plots w/o grp A                    :after t2, 1w
+		Identify Group A from B	           :t2, after t1, 1w
+		Rerun plots w/o grp A              :t4, after t2, 1w
+	section Part C
+	    Extend Analysis to BeerAdvocate    :after t4, 1w
+	section H2
+		Homework 2                         :h2, 11-17, 12-01
 	section Report
 		Website, redaction                       :end, 12-08, 2w
 ```
