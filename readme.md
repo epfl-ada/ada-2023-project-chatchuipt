@@ -80,6 +80,13 @@ https://huggingface.co/tasks/text-classification
 beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
 --> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
 of the comments --> beer trends description
+
+causalité des patterns saisonniers --> les identifier et les grouper par pattern--> basé sur les critères : % alcool, critères de notation, location des users
+causes des residuals (personnes A et B)
+sentimental analysis correlated ratings et overall --> see patters
+une fois types de bieres saisonniers --> id si beweries target certains types ? brasseries spéciales ?
+
+
 ## Summary 
 ### 0. Load the cached data
 ### 1. Pre-processing datasets for BeerAdvocate and RateBeer
