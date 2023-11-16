@@ -88,7 +88,7 @@ of the comments --> beer trends description
 - 3.3 New column: country, to remove states in USA
 - 3.4 Plot contribution of different countries in the % of ratings in Beer Advocate and RateBeer
 - 3.5 Mapping of ratings
-- 3.6 What is the most rated style the whole world (in RateBeer)?
+- 3.6 What is the most rated style the whole world in RateBeer & Beer Advocate?
 - 3.7 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
 - 3.8 Do we have users in common for both datasets?
 ### 4. Exploration of the dataset RateBeer: Seasonal tendancies?
