@@ -66,50 +66,30 @@ the NaNs of the location feature were removed.
 compared. Are raters also writers? ???. After seeing that the USA users tended to consume a lower diversity of beers, we 
 added the column country to the table in order to remove those consummers. To identify the most implicated countries, 
 we plotted thecontribution of different countries in the % of ratings in Beer Advocate and RateBeer and mapped those percentages.
-To study the rating fluctation of different styles of beers, we firstly identified the most rated style the whole world. 
+To study the rating fluctation of different styles of beers, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites to see how they could be comparable. This was done by performing a LinearRegression
+on both sites' data and taking as features the appearance, aroma, palate, taste and overall and as output the rating.
 
-??? to end
+- Now that the two sites have been compared and the dataset cleaned, the datasets were ready to be analysed more deeply. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patters of season-dependency. 
+We then analysed the distribution of alcohol degree among beers compared to ratings indicating a big shift of the degree depending on the
+best seller season of the beer.
 
-   
-Graphs plotting for different kind of beers, evolution accross time, evolution between years by superposition, ...
-correlation between senitmental analysis of comments and ratings ?
-sentimental analysis of comments in order to grade the comments with a high positivity etc for example with the site : 
-https://huggingface.co/tasks/text-classification
+- Then with statisticals analysis such as t-test or ... we will analyse which criterias such as  alcool percentage, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
+of beers are prefered at which time of the year. Then, a splitting of the dataset into clients types A and B will be conducted and similar
+analysis as before will be performed to see if we really have at lesast 2 discernable categories of consummers in the batch of the users.
+
+- To complement the findings, a sentimental analysis on the comments will be performed to see if the ratings and the comments' postivity correlate strongly to each others and if they also vary with the seasons. This would indicate a clear change of mood from the users in addition to their rating frequency. The sentimental analysis of the comments will be performed using an already trained machine learning classifier that could be downloaded on the site : https://huggingface.co/tasks/text-classification. This classifier assigns a grade based on the degree of positivity of the comment.
+
+- 
 
 ## Proposed timeline
 beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
 --> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
 of the comments --> beer trends description
 
-causalité des patterns saisonniers --> les identifier et les grouper par pattern--> basé sur les critères : % alcool, critères de notation, location des users
+causalité des patterns saisonniers --> les identifier et les grouper par pattern--> basé sur les critères : % alcool, 
 causes des residuals (personnes A et B)
 sentimental analysis correlated ratings et overall --> see patters
 une fois types de bieres saisonniers --> id si beweries target certains types ? brasseries spéciales ?
-
-
-## Summary 
-### 0. Load the cached data
-### 1. Pre-processing datasets for BeerAdvocate and RateBeer
-- 1.1 Merge users and ratings to obtain location of each rating especially
-- 1.2 Change the date format and isolate month and year
-### 2. Data Cleaning 
-- 2.1 Remove unrelevant columns/duplicates
-- 2.2 Identification of columns that have missing values
-- 2.3 Replace abv (alcohol degree) missing values by the average abv of the corresponding beer style
-- 2.4 Drop NaN for location -> remove ratings where location is not mentioned
-### 3. Compare RateBeers and BeerAdvocate
-- 3.1 Distribution of ratings and reviews between BeerAdvocate and RateBeer
-- 3.2 Are raters also writers? Check nbr of reviews compared to nbr of ratings
-- 3.3 New column: country, to remove states in USA
-- 3.4 Plot contribution of different countries in the % of ratings in Beer Advocate and RateBeer
-- 3.5 Mapping of ratings
-- 3.6 What is the most rated style the whole world in RateBeer & Beer Advocate?
-- 3.7 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
-- 3.8 Do we have users in common for both datasets?
-### 4. Exploration of the dataset RateBeer: Seasonal tendancies?
-- 4.1 Distribution of ratings per month for all beers
-- 4.2 Distribution of IPA, Pilsner and Belgian Strong Ale reviews normalized according to total number of reviews
-- 4.3 Distribution of alcohol degree among beers compared to ratings -> do people drink a lot of strong beers?
 
 # Organization within the team
 
