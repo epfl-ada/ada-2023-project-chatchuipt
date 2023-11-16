@@ -79,7 +79,7 @@ analysis as before will be performed to see if we really have at lesast 2 discer
 
 - To complement the findings, a sentimental analysis on the comments will be performed to see if the ratings and the comments' postivity correlate strongly to each others and if they also vary with the seasons. This would indicate a clear change of mood from the users in addition to their rating frequency. The sentimental analysis of the comments will be performed using an already trained machine learning classifier that could be downloaded on the site : https://huggingface.co/tasks/text-classification. This classifier assigns a grade based on the degree of positivity of the comment.
 
-- 
+- Finally for a global view, we will inspect how the breweries proposal vary and converge to specific beers. This could show whiches beweries will sell a lot of beers at different time of the year depending on the major style of beer that is sold in it.
 
 ## Proposed timeline
 beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
