@@ -43,18 +43,9 @@ to remove et ??? mettre dans notebook ???
 - No additional dataset to provide, complete dataset !
 
 # Methods
-- Load the cached data, in order to minimize the loading time required to load the txt and csv files, the txt files were reshaped
-and registered as csv files. The loading of the csv files was performed using a trick ??? kamil ??? allowing to load them locally
-as DataFrames on the computer.
+- For each ratings, the location was added with a union operation between the ratings and the users dataset (based on user_id). The dates were also discretised in months and years in order to perfom a monthly analysis
 
-- After loading the data, we pre-processed the datasets for BeerAdvocate and RateBeer. This was done by merging the users'locations
-with the ratings to obtain the location of each rating especially. The dates were also discretised in months and years
-to perfom a monthly analysis of the ratings of different beer styles.
-
-- The data was the cleaned. the unrelevant columns/duplicates were removed. Columns with missing values were identified and different
-treatments were performed on them. For the alcohol degree (abv index), the missing values were remplaced by the average alcohol
-degree of the corresponding beer style. As a rating without location is unuseful and this missing value cannot be estimated,
-the NaNs of the location feature were removed.
+- Ratings with missing abv index were completed with the average index of the corresponding beer style. Ratings with missing location, date or beer style were dropped from the dataset.
 
 - After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. Firstly the distributions of the ratings were
 compared. Are raters also writers? ???. After seeing that the USA users tended to consume a lower diversity of beers, we 
