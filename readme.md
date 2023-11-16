@@ -1,49 +1,43 @@
 # Every Season is Beerable
 # Abstract
-- This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different
-beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers
-have variable success rate accross the year or inversely have a constant consumption rate.
+- This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate.
 - After identifying how some specific types of beers are consumed at different times of the year, we could dig further those tendencies to see if they also varies accross the years. This would helps to identify if the beer success at some time was ephemere or inversely anchored in the consumption habits of beer drinkers.
 
 to remove et ??? mettre dans notebook ???
 - This quantitative analysis of the rate of consumption can be complemented with a sentimental analysis of the ratings and the comments. It is a good point to see that a beer is more consummed at one time in the year, but does the rating and the comments about this beer are also more positives ? This would indicate a change of the drinker's taste preference accross the seasons (in other words, would a user give a better or worse rating depending on wether he is consuming at the right time or not).
 
-??? retaffer personnes a et b
-- The dataset contains a high number of user of different profiles. We identified 2 main types of users:
-    - A: The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences but rather for the sake of testing a high number of beers
-    - B: The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
-- Because of the non-seasonal behaviour nature of group A, we might have to first remove the group A to only perform the study on group B
-
-
 
 # Research Questions
-	Identify S.D.B
-	Identify ephemere S.D.B.
-	Wrong season ratings
-	Features of S.D.B
-    Identify Group A from B
-	Rerun plots w/o grp A
-
-## `Task 1:` World region
-- Base the analysis for different region of the world. Make sure to take into account the hemisphere when evaluating for the season. ??? va pas le faire si ???
-
-## `Task 2:` Season-dependent beer (e.g: beer almost exclusively drank during one season)
+## `Task 1:` Season-dependent beer (e.g: beer almost exclusively drank during one season)
 - Is a beer more incline to be consumed at one time of the year and if so, at which time of the year ?
 
-## `Task 3:` Ephemere and long-lasting season dependent beers
+## `Task 2:` Ephemere and long-lasting season dependent beers
 - Do some beers are highly rated during only one season during one specific year and then are forgotten in the next years ?
 
-## `Task 4:` Features of season-dependent beers
+## `Task 3:` Features of season-dependent beers
 - Which characteristics such as the aroma, the taste, ... of a beer makes it to be more a spring-beer or a fall-beer ?
 
-## `Task 5:` Drinking at the wrong season 
+## `Task 4:` Drinking at the wrong season 
 - Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
 
-## `Task 6:` Professional vs Occasional drinker
-- Isolate group A from B and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group A.
+## `Task 5:` Dataset Quality Enhancement
+### Professional vs Occasional drinker
+- The dataset contains a high number of user of different profiles. We identified 2 main types of users:
+    - `A:` The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences or what fits the current season
+    - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
+- Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
 
-## Commentary in adequation with the ratings ?
-- Can we observe a correlation between the ratings values and the positivity degree of the commentaries using a sentimental analysis ?
+### Elude ratings from south hemipshere
+- Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
+
+## `Task 6:` Sentimental analysis
+- Compute the "distance" between the actual rating's grade and the inferred grade from the textual content (using natural language processing tools like [Hugging Face](https://huggingface.co/tasks/text-classification) or the proposed method from paper ...)
+- Perform this test for group `A` and `B` on seasonal and non-seasonal beers
+- Will users from group `B` be more precise in their ratings than group `A` for seasonal beers, is it also the case for non-seasonal beers ?
+
+## `Task 7:` Seasonal beers oriented breweries
+- Identify wether or not breweries focus more on seasonal beers than others
+- If so, what are their characteristics
 
 # Proposed additional datasets (if any) 
 - No additional dataset to provide, complete dataset !
@@ -76,18 +70,7 @@ correlation between senitmental analysis of comments and ratings ?
 sentimental analysis of comments in order to grade the comments with a high positivity etc for example with the site : 
 https://huggingface.co/tasks/text-classification
 
-## Proposed timeline
-beers variety accross seasons --> id kind of beers --> compare characteristics --> see tendencies variation accross year 
---> ratings of beers variation accross season also follows trends --> correlation between ratings and sentimental analysis 
-of the comments --> beer trends description
-
-causalité des patterns saisonniers --> les identifier et les grouper par pattern--> basé sur les critères : % alcool, critères de notation, location des users
-causes des residuals (personnes A et B)
-sentimental analysis correlated ratings et overall --> see patters
-une fois types de bieres saisonniers --> id si beweries target certains types ? brasseries spéciales ?
-
-
-## Summary 
+## Summary (TODO REMOVE)
 ### 0. Load the cached data
 ### 1. Pre-processing datasets for BeerAdvocate and RateBeer
 - 1.1 Merge users and ratings to obtain location of each rating especially
@@ -111,6 +94,13 @@ une fois types de bieres saisonniers --> id si beweries target certains types ? 
 - 4.2 Distribution of IPA, Pilsner and Belgian Strong Ale reviews normalized according to total number of reviews
 - 4.3 Distribution of alcohol degree among beers compared to ratings -> do people drink a lot of strong beers?
 
+
+## Proposed timeline
+causalité des patterns saisonniers --> les identifier et les grouper par pattern--> basé sur les critères : % alcool, critères de notation, location des users
+causes des residuals (personnes A et B)
+sentimental analysis correlated ratings et overall --> see patters
+une fois types de bieres saisonniers --> id si beweries target certains types ? brasseries spéciales ?
+
 # Organization within the team
 
 ```mermaid
@@ -119,18 +109,22 @@ gantt
     dateFormat MM-DD
 	axisFormat %m-%d
 
-	section Part A
-		Identify S.D.B                     :t1, 11-17, 1w
-		Identify ephemere S.D.B.           :after t1, 1w
-		Wrong season ratings               :after t1, 1w
-		Features of S.D.B                  :after t1, 1w
-    section Part B
-		Identify Group A from B	           :t2, after t1, 1w
-		Rerun plots w/o grp A              :t4, after t2, 1w
-	section Part C
-	    Extend Analysis to BeerAdvocate    :after t4, 1w
+	section Task 1,2
+		Identify S.B (ephemere and long term)   :t1, 11-17, 2w
+	section Task 3
+		Categories S.B based on their features  :t3, after t1 h2, 1w
+    section Task 4
+		Wrong season ratings (harsher ratings?) :after t1 h2, 1w
+	section Task 5
+		Dataset Quality Enhancement             :t51, after t1 h2, 1w
+		Rerun analysis with enhanced dataset    :t52, after t51, 1w
+	section Task 6
+		Sentimental analysis                    :after t1 h2, 1w
+	section Task 7 
+		Seasonal beers oriented breweries       :after t1 h2, 1w
 	section H2
-		Homework 2                         :h2, 11-17, 12-01
+		Homework 2                              :h2, 11-17, 2w
 	section Report
-		Website, redaction                       :end, 12-08, 2w
+		Website, redaction                      :after t1, 2w
 ```
+S.B: Seasonal Beer
