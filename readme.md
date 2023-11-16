@@ -17,6 +17,13 @@ to remove et ??? mettre dans notebook ???
 
 
 # Research Questions
+	Identify S.D.B
+	Identify ephemere S.D.B.
+	Wrong season ratings
+	Features of S.D.B
+    Identify Group A from B
+	Rerun plots w/o grp A
+
 ## `Task 1:` World region
 - Base the analysis for different region of the world. Make sure to take into account the hemisphere when evaluating for the season. ??? va pas le faire si ???
 
@@ -42,7 +49,6 @@ to remove et ??? mettre dans notebook ???
 - No additional dataset to provide, complete dataset !
 
 # Methods
-
 - Load the cached data, in order to minimize the loading time required to load the txt and csv files, the txt files were reshaped
 and registered as csv files. The loading of the csv files was performed using a trick ??? kamil ??? allowing to load them locally
 as DataFrames on the computer.
@@ -117,10 +123,14 @@ gantt
 		Identify S.D.B                     :t1, 11-17, 1w
 		Identify ephemere S.D.B.           :after t1, 1w
 		Wrong season ratings               :after t1, 1w
-		Features of S.D.B                  :t2,after t1, 1w
+		Features of S.D.B                  :after t1, 1w
     section Part B
-		Identify Group A from B	                 :t3, 11-17, 1w
-		Rerun plots w/o grp A                    :after t2, 1w
+		Identify Group A from B	           :t2, after t1, 1w
+		Rerun plots w/o grp A              :t4, after t2, 1w
+	section Part C
+	    Extend Analysis to BeerAdvocate    :after t4, 1w
+	section H2
+		Homework 2                         :h2, 11-17, 12-01
 	section Report
 		Website, redaction                       :end, 12-08, 2w
 ```
