@@ -22,8 +22,7 @@ Winter is a season for brown beers, high on alcohol to warm us up, while summer 
     - `A:` The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences or what fits the current season
     - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
 - Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
-
-<img src="Images/chad_beer.png" alt="image" width="500" height="auto">
+- <img src="Images/chad_beer.png" alt="image" width="500" height="auto">
 
 ### Elude ratings from south hemipshere
 - Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
@@ -66,21 +65,20 @@ gantt
 	axisFormat %m-%d
 
 	section Task 1,2
-		Identify S.B (ephemere and long term)   :t1, 11-24, 1w
+		2 person   :t1, 11-24, 1w
 	section Task 3
-		Categories S.B based on their features  :t3, 11-27, 1w
+		1 person :t3, 11-27, 1w
     section Task 4
-		Wrong season ratings (harsher ratings?) :after t1, 1w
+		1 person :after t1, 1w
 	section Task 5
-		Dataset Quality Enhancement             :t51,11-27, 1w
-		Rerun analysis with enhanced dataset    :t52, after t51, 1w
+		1 person             :t51,11-27, 1w
+		1 person    :t52, after t51, 1w
 	section Task 6
-		Sentimental analysis                    :11-27, 1w
+		1 person                    :11-27, 1w
 	section Task 7 
-		Seasonal beers oriented breweries       :after t1 h2, 1w
-	section H2
-		Homework 2                              :h2, 11-17, 2w
-	section Report
-		Website, redaction                      :after t1, 2w
+		1 person       :after t1 h2, 1w
+	section Homework 2
+		everyone, then 3 person                              :h2, 11-17, 2w
+	section Website, redaction
+		Everyone                      :after t1, 2w
 ```
-S.B: Seasonal Beer
