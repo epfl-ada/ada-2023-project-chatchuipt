@@ -68,14 +68,14 @@ gantt
 	section Task 1,2
 		Identify S.B (ephemere and long term)   :t1, 11-24, 1w
 	section Task 3
-		Categories S.B based on their features  :t3, after t1 h2, 1w
+		Categories S.B based on their features  :t3, 11-27, 1w
     section Task 4
-		Wrong season ratings (harsher ratings?) :after t1 h2, 1w
+		Wrong season ratings (harsher ratings?) :after t1, 1w
 	section Task 5
-		Dataset Quality Enhancement             :t51, after t1 h2, 1w
+		Dataset Quality Enhancement             :t51,11-27, 1w
 		Rerun analysis with enhanced dataset    :t52, after t51, 1w
 	section Task 6
-		Sentimental analysis                    :after t1 h2, 1w
+		Sentimental analysis                    :11-27, 1w
 	section Task 7 
 		Seasonal beers oriented breweries       :after t1 h2, 1w
 	section H2
