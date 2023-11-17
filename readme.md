@@ -1,6 +1,6 @@
 # Every Season is Beerable
 # Abstract
-- This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying how some specific types of beers are consumed at different times of the year, we could dig further those tendencies to see if they also varies accross the years. This would helps to identify if the beer success at some time was ephemere or inversely anchored in the consumption habits of beer drinkers. Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
+This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying how some specific types of beers are consumed at different times of the year, we could dig further those tendencies to see if they also varies accross the years. This would helps to identify if the beer success at some time was ephemere or inversely anchored in the consumption habits of beer drinkers. Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
 
 
 # Research Questions
@@ -39,28 +39,21 @@
 - No additional dataset to provide, complete dataset !
 
 # Methods
-- For each ratings, the location was added with a union operation between the ratings and the users dataset (based on user_id). The dates were also discretised in months and years in order to perfom a monthly analysis
+- For each ratings, the location was added with a union operation between the ratings and the users dataset (based on user_id). The dates were also discretised in months and years in order to perfom a monthly analysis. Ratings with missing abv index were completed with the average index of the corresponding beer style. Ratings with missing location, date or beer style were dropped from the dataset.
 
-- Ratings with missing abv index were completed with the average index of the corresponding beer style. Ratings with missing location, date or beer style were dropped from the dataset.
+- After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. To identify the most implicated countries, 
+the contribution of different countries in the % of ratings was plotted in Beer Advocate and RateBeer and those percentages were mapped.
+For the seasonal variability of ratings, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites. This was done by performing a LinearRegression on both sites' data and taking as features the appearance, aroma, palate, taste and overall and as output the rating.
 
-- After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. Firstly the distributions of the ratings were
-compared. After seeing that the USA users tended to consume a lower diversity of beers, we 
-added the column country to the table in order to remove those consummers. To identify the most implicated countries, 
-we plotted thecontribution of different countries in the % of ratings in Beer Advocate and RateBeer and mapped those percentages.
-To study the rating fluctation of different styles of beers, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites to see how they could be comparable. This was done by performing a LinearRegression
-on both sites' data and taking as features the appearance, aroma, palate, taste and overall and as output the rating.
+- The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patters of season-dependency.
 
-- Now that the two sites have been compared and the dataset cleaned, the datasets were ready to be analysed more deeply. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patters of season-dependency. 
-We then analysed the distribution of alcohol degree among beers compared to ratings indicating a big shift of the degree depending on the
-best seller season of the beer.
-
-- Then with statisticals analysis such as t-test we will analyse which criterias such as  alcool percentage, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
+- Then with statisticals analysis such as t-test we will analyse which feature such as alcool degree, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
 of beers are prefered at which time of the year. Then, a splitting of the dataset into clients types A and B will be conducted and similar
 analysis as before will be performed to see if we really have at lesast 2 discernable categories of consummers in the batch of the users.
 
 - To complement the findings, a sentimental analysis on the comments will be performed to see if the ratings and the comments' postivity correlate strongly to each others and if they also vary with the seasons. This would indicate a clear change of mood from the users in addition to their rating frequency. The sentimental analysis of the comments will be performed using an already trained machine learning classifier that could be downloaded on the site : https://huggingface.co/tasks/text-classification. This classifier assigns a grade based on the degree of positivity of the comment.
 
-- Finally for a global view, we will inspect how the breweries proposal vary and converge to specific beers. This could show whiches beweries will sell a lot of beers at different time of the year depending on the major style of beer that is sold in it.
+- Finally for a global view, we will inspect how the breweries proposal vary and converge to specific beers using t-test as well. This could show the beweries offer's variability depending on their targetted clients.
 
 # Timeline and organization within the team
 
