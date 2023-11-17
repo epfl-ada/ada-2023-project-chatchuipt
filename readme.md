@@ -66,7 +66,7 @@ analysis as before will be performed to see if we really have at lesast 2 discer
 
 - Finally for a global view, we will inspect how the breweries proposal vary and converge to specific beers. This could show whiches beweries will sell a lot of beers at different time of the year depending on the major style of beer that is sold in it.
 
-# Organization within the team
+# Timeline and organization within the team
 
 ```mermaid
 gantt
