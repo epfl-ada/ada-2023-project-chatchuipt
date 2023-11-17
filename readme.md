@@ -23,6 +23,8 @@ This project aims mainly at studying the beer trends based on seasons. In fact, 
     - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
 - Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
 
+<img src="Images/chad_beer.png" alt="image" width="500" height="auto">
+
 ### Elude ratings from south hemipshere
 - Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
 
