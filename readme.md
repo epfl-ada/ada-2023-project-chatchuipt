@@ -1,10 +1,6 @@
 # Every Season is Beerable
 # Abstract
-- This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate.
-- After identifying how some specific types of beers are consumed at different times of the year, we could dig further those tendencies to see if they also varies accross the years. This would helps to identify if the beer success at some time was ephemere or inversely anchored in the consumption habits of beer drinkers.
-
-to remove et ??? mettre dans notebook ???
-- This quantitative analysis of the rate of consumption can be complemented with a sentimental analysis of the ratings and the comments. It is a good point to see that a beer is more consummed at one time in the year, but does the rating and the comments about this beer are also more positives ? This would indicate a change of the drinker's taste preference accross the seasons (in other words, would a user give a better or worse rating depending on wether he is consuming at the right time or not).
+- This project aims mainly at studying the beer trends based on seasons. In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beers may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying how some specific types of beers are consumed at different times of the year, we could dig further those tendencies to see if they also varies accross the years. This would helps to identify if the beer success at some time was ephemere or inversely anchored in the consumption habits of beer drinkers. Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
 
 
 # Research Questions
@@ -48,7 +44,7 @@ to remove et ??? mettre dans notebook ???
 - Ratings with missing abv index were completed with the average index of the corresponding beer style. Ratings with missing location, date or beer style were dropped from the dataset.
 
 - After cleaning the data, the two sites RateBeer and BeerAdvocate were compared. Firstly the distributions of the ratings were
-compared. Are raters also writers? ???. After seeing that the USA users tended to consume a lower diversity of beers, we 
+compared. After seeing that the USA users tended to consume a lower diversity of beers, we 
 added the column country to the table in order to remove those consummers. To identify the most implicated countries, 
 we plotted thecontribution of different countries in the % of ratings in Beer Advocate and RateBeer and mapped those percentages.
 To study the rating fluctation of different styles of beers, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites to see how they could be comparable. This was done by performing a LinearRegression
@@ -58,7 +54,7 @@ on both sites' data and taking as features the appearance, aroma, palate, taste 
 We then analysed the distribution of alcohol degree among beers compared to ratings indicating a big shift of the degree depending on the
 best seller season of the beer.
 
-- Then with statisticals analysis such as t-test or ... we will analyse which criterias such as  alcool percentage, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
+- Then with statisticals analysis such as t-test we will analyse which criterias such as  alcool percentage, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
 of beers are prefered at which time of the year. Then, a splitting of the dataset into clients types A and B will be conducted and similar
 analysis as before will be performed to see if we really have at lesast 2 discernable categories of consummers in the batch of the users.
 
