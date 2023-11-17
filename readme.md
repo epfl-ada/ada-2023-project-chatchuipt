@@ -47,7 +47,7 @@ This project aims mainly at studying the beer trends based on seasons. In fact, 
 the contribution of different countries in the % of ratings was plotted in Beer Advocate and RateBeer and those percentages were mapped.
 For the seasonal variability of ratings, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites. This was done by performing a LinearRegression on both sites' data and taking as features the appearance, aroma, palate, taste and overall and as output the rating.
 
-- The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patters of season-dependency.
+- The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patterns of season-dependency.
 
 - Then with statisticals analysis such as t-test we will analyse which feature such as alcool degree, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
 of beers are prefered at which time of the year. Then, a splitting of the dataset into clients types A and B will be conducted and similar
