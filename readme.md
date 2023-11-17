@@ -64,7 +64,7 @@ gantt
 	axisFormat %m-%d
 
 	section Task 1,2
-		Identify S.B (ephemere and long term)   :t1, 11-17, 2w
+		Identify S.B (ephemere and long term)   :t1, 11-24, 1w
 	section Task 3
 		Categories S.B based on their features  :t3, after t1 h2, 1w
     section Task 4
