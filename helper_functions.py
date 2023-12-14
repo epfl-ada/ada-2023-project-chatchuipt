@@ -11,6 +11,42 @@ from geopy.geocoders import Nominatim
 import folium
 import pycountry
 
+def txt2csv(path_in, path_out):
+    #Check for presence of 'ratings_ba_clean.csv'
+    if not os.path.isfile(path_in):
+        #Convert .txt to csv
+        df = text_to_df(path_in)
+        #Convert .txt to csv
+        df.to_csv(path_out)
+        return df
+    else:
+        print('.csv already present')
+        return None
+
+def csv2cache(df, path_in, cache_path):
+    #Check for presence of 'ratings_ba.pkl' (BeerAdvocate)
+    if not os.path.isfile(cache_path):
+        if df == None:
+            #Load the newly created .csv file
+            df = pd.read_csv(path_in)
+
+        #Cache the data
+        pickle.dump(df, open(cache_path, 'wb'))
+    else:
+        print('.pkl already present')
+
+#Check for presence of 'ratings_rb.pkl' (RateBeer)
+if not os.path.isfile('ratings_rb.pkl'):
+    
+    #Load the newly created .csv file
+    ratings_rb_csv = pd.read_csv(FOLDER_RB + 'ratings_rb_clean.csv')
+    
+     #Cache the data
+    pickle.dump(ratings_rb_csv, open('ratings_rb.pkl', 'wb'))
+else:
+    print('file already loaded and cached')
+
+
 def text_to_df (file_path):
     """
     Convert .txt files to dataframes,
@@ -56,7 +92,7 @@ def get_coordinates(country):
     geolocator = Nominatim(user_agent="geoapiExercices")
     try:
         # obtain the location (latitude and longitude) for the given country
-        location = geolocator.geocode(country, language='en')
+        location = geolocator.geocode(country, language='en', timeout=1)
         return (location.latitude,location.longitude)
     except:
         return (None,None)
