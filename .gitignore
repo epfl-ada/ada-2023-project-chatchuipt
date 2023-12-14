@@ -1,1 +1,10 @@
 /data
+/BeerAdvocate
+/RateBeer
+/data/**
+/BeerAdvocate/**
+/RateBeer/**
+**.pkl
+*.pkl
+__pycache__/
+__pycache__/**
