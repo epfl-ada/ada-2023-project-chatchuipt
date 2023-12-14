@@ -35,11 +35,12 @@ def csv2cache(df, path_in, cache_path):
     else:
         print('.pkl already present')
 
+FOLDER_RB = './data/RateBeer/'
 #Check for presence of 'ratings_rb.pkl' (RateBeer)
 if not os.path.isfile('ratings_rb.pkl'):
     
     #Load the newly created .csv file
-    ratings_rb_csv = pd.read_csv(FOLDER_RB + 'ratings_rb_clean.csv')
+    ratings_rb_csv = pd.read_csv('./data/RateBeer/' + 'ratings_rb_clean.csv')
     
      #Cache the data
     pickle.dump(ratings_rb_csv, open('ratings_rb.pkl', 'wb'))
