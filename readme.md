@@ -1,4 +1,68 @@
 # Every Season is Beerable
+
+# (Organisation du notebook)
+## `0:` Notebook setup 
+- 0.1 Import libraries and some definitions
+- 0.2 Converting TXT to CSV and caching
+- 0.3 Loading data
+
+## `1:` Pre-processing datasets for BeerAdvocate and RateBeer
+- 1.1 Merge users and ratings to obtain location of each rating especially and change the date format and isolate month and year
+
+## `2:` Data cleaning
+- Remove unrelevant columns/duplicates, Identification of columns that have missing values, Replace abv (alcohol degree) missing values by the average abv of the corresponding beer style, 2.4 Drop NaN for location -> remove ratings where location is not mentioned
+
+## `3:` Compare RateBeers and BeerAdvocate
+- 3.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer
+- 3.2 Are raters also writers? Check nbr of reviews compared to nbr of ratings
+- 3.3 Contribution of different countries in the number of ratings
+- World map visualisation
+- 3.4 What is the most rated style in the whole world ?
+- 3.5 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
+- 3.6 Number of ratings per year
+- 3.7 Do we have users in common for both datasets?
+- 
+## `4:` Exploration of the dataset RateBeer: Seasonal tendencies?
+- 4. 1 Distribution of ratings per month for all beers
+- 4.2 Distribution of IPA, Pilsener, Belgian Strong Ale reviews normalized according to total number of reviews
+- 4.4 Distribution of alcohol degree among two different beer styles
+- 
+
+## `5.` Centralized research on users
+- 5.1 IPA
+- 5.2 Pilsener
+- 5.3 Belg Strong Ale
+- a toi de jouer theo
+- 5. Try to check for seasonal trends in terms of normalized ratings
+- 6. 5.1 IPA
+- 7. 5.2 Pilsener
+- 8. 5.3 Belgian Strong Ale
+
+## `6.` Check seasonality for different alcohol degree
+- 6.1 Light beers
+- 6.2 Strong beers
+- 6 1/2 Other beer styles
+
+## `7.` For light and strong beers, ich if trends in rates
+- 7.1 Grades (ratings) light beers
+
+## `8.` See for all the interesting years
+- Observe number of ratings per year to keep only the intersting years
+## `9.` t-test to check for significant difference between summer and winter
+- 9.1 Light beers
+- 9.2: Strong Beers
+## `10.` Trends depending on color?
+- 10.0 See the distribution of estimated srm values among the dataframe
+- 10.1 Pale beers
+- 10.2 Dark beers
+- 10.3 Medium color
+## `11.` Trends depending on IBU (bitterness)
+- 11.1 Mild beers
+- 11.2 Bitter beers
+- 11.3 Medium IBU = 30
+## `12.`  Scatter Plot to see a potential correlation between alcohol degree (ABV), color (SRM) and bitterness (IBU)
+## `13.`   Best beers
+
 # Abstract
 Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we will observe if those tendencies varies accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
 
@@ -82,42 +146,6 @@ gantt
 	section Website, redaction
 		Everyone                      :after t1, 2w
 ```
-(Organisation du notebook)
 
-# Research Questions
-## `0:` Notebook setup 
-- 0.1 Import libraries and some definitions
-- 0.2 Converting TXT to CSV and caching
-- 0.3 Loading data
 
-## `1:` Pre-processing datasets for BeerAdvocate and RateBeer
-- 1.1 Merge users and ratings to obtain location of each rating especially and change the date format and isolate month and year
 
-## `2:` Features of season-dependent beers
-- Which characteristics such as the aroma, the taste, etc.. of a beer makes it to be more a spring-beer or a fall-beer ?
-
-## `Task 4:` Drinking at the wrong season 
-- Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
-
-## `Task 5:` Dataset Quality Enhancement
-### Professional vs Occasional drinker
-- The dataset contains a high number of user of different profiles. We identified 2 main types of users:
-    - `A:` The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences or what fits the current season
-    - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
-- Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
-- <img src="Images/chad_beer.png" alt="image" width="500" height="auto">
-
-### Elude ratings from south hemipshere
-- Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
-
-## `Task 6:` Sentimental analysis
-- Compute the "distance" between the actual rating's grade and the inferred grade from the textual content (using natural language processing tools like [Hugging Face](https://huggingface.co/tasks/text-classification) or the proposed method from paper http://i.stanford.edu/~julian/pdfs/icdm2012.pdf)
-- Perform this test for group `A` and `B` on seasonal and non-seasonal beers
-- Will users from group `B` be more precise in their ratings than group `A` for seasonal beers, is it also the case for non-seasonal beers ?
-
-## `Task 7:` Seasonal beers oriented breweries
-- Identify wether or not breweries focus more on seasonal beers than others
-- If so, what are their characteristics ?
-
-# Proposed additional datasets (if any) 
-- No additional dataset to provide.
