@@ -79,7 +79,27 @@ def text_to_df (file_path):
 
  # Create a DataFrame from the list of beer dictionaries
     return pd.DataFrame(beers_dic)
+    
+def data_pre_processing(data_to_merge1, data_to_merge2):
+        """
+        Merge users and ratings to obtain location of each rating especially and hange the date format and isolate month and year
+        :param data_to_merge1: pd.DataFrame, typically users
+        :param data_to_merge2: pd.DataFrame, typically ratings
+        :return: pd.DataFrame
+        """
 
+        user_ratings = data_to_merge1.merge(data_to_merge2, how = 'right', on = 'user_id')
+        user_ratings['date'] = pd.to_datetime(user_ratings['date'], unit='s')
+    
+        user_ratings['joined'] = pd.to_datetime(user_ratings['joined'], unit='s')
+    
+        # Create columns 'month', 'year' & 'year_month' on 'user_ratings' dataframe
+        user_ratings['month'] = user_ratings['date'].dt.month
+        user_ratings['year'] = user_ratings['date'].dt.year
+    
+        user_ratings['year_month'] = user_ratings['date'].dt.to_period('M')
+        return user_ratings
+    
 def extract_country(location):
     if ',' in location:
         # If there is a comma in the location, split the string and take the first part
