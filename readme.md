@@ -82,3 +82,42 @@ gantt
 	section Website, redaction
 		Everyone                      :after t1, 2w
 ```
+(Organisation du notebook)
+
+# Research Questions
+## `0:` Notebook setup 
+- 0.1 Import libraries and some definitions
+- 0.2 Converting TXT to CSV and caching
+- 0.3 Loading data
+
+## `1:` Pre-processing datasets for BeerAdvocate and RateBeer
+- 1.1 Merge users and ratings to obtain location of each rating especially and change the date format and isolate month and year
+
+## `2:` Features of season-dependent beers
+- Which characteristics such as the aroma, the taste, etc.. of a beer makes it to be more a spring-beer or a fall-beer ?
+
+## `Task 4:` Drinking at the wrong season 
+- Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
+
+## `Task 5:` Dataset Quality Enhancement
+### Professional vs Occasional drinker
+- The dataset contains a high number of user of different profiles. We identified 2 main types of users:
+    - `A:` The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences or what fits the current season
+    - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
+- Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
+- <img src="Images/chad_beer.png" alt="image" width="500" height="auto">
+
+### Elude ratings from south hemipshere
+- Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
+
+## `Task 6:` Sentimental analysis
+- Compute the "distance" between the actual rating's grade and the inferred grade from the textual content (using natural language processing tools like [Hugging Face](https://huggingface.co/tasks/text-classification) or the proposed method from paper http://i.stanford.edu/~julian/pdfs/icdm2012.pdf)
+- Perform this test for group `A` and `B` on seasonal and non-seasonal beers
+- Will users from group `B` be more precise in their ratings than group `A` for seasonal beers, is it also the case for non-seasonal beers ?
+
+## `Task 7:` Seasonal beers oriented breweries
+- Identify wether or not breweries focus more on seasonal beers than others
+- If so, what are their characteristics ?
+
+# Proposed additional datasets (if any) 
+- No additional dataset to provide.
