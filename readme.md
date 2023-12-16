@@ -15,7 +15,9 @@
   - [1.4 What is the most rated style in the whole world?](#1.4-what-is-the-most-rated-style-in-the-whole-world)
   - [1.5 Supervised Learning: the relation between the features (appearance, aroma, palate, taste, overall) and response (rating)](#1.5-supervised-learning-the-relation-between-the-features-appearance-aroma-palate-taste-overall-and-response-rating)
   - [1.6 Number of ratings per year](#1.6-number-of-ratings-per-year)
-  - [1.7 Do we have users in common for both datasets? Decision - Do we take BeerAdvocate or RateBeer or both datasets -](#1.7-do-we-have-users-in-common-for-both-datasets-decision-do-we-take-beeradvocate-or-ratebeer-or-both-datasets)
+  - [1.7 Do we have users in common for both datasets? ](#1.7-do-we-have-users-in-common-for-both-datasets)
+
+## Decision - Do we take BeerAdvocate or RateBeer or both datasets -
 
 - [**2. Exploration of Characteristics Specific to Users**](#2-exploration-of-characteristics-specific-to-users)
   - [2.1 IPA](#2.1-ipa)
@@ -76,7 +78,6 @@
 - 1.6 Number of ratings per year
 - 1.7 Do we have users in common for both datasets?
 
-Decision - Do we take **BeerAdvocate** or **RateBeer** or both datasets -
 
 ## `2.` Exploration of characteristics specific to users
 - 2.1 IPA
