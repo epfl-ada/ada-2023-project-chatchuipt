@@ -1,67 +1,125 @@
 # Every Season is Beerable
 
+## **Table of Contents** <a name="table-of-contents"></a>
+
+- [**0. Notebook Set-up**](#0-notebook-setup)
+  - [0.1 Import libraries and some definitions](#0.1-import-libraries-and-some-definitions)
+  - [0.2 Converting TXT to CSV and caching](#0.2-converting-txt-to-csv-and-caching)
+  - [0.3 Pre-processing datasets for BeerAdvocate and RateBeer](#0.3-pre-processing-datasets-for-beeradvocate-and-ratebeer)
+  - [0.4 Data cleaning](#0.4-data-cleaning)
+
+- [**1. Compare RateBeers and BeerAdvocate**](#1-compare-ratebeers-and-beeradvocate)
+  - [1.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer](#1.1-distribution-of-ratings-and-reviews-per-user-between-beeradvocate-and-ratebeer)
+  - [1.2 Are raters also writers? Check the number of reviews compared to the number of ratings](#1.2-are-raters-also-writers-check-the-number-of-reviews-compared-to-the-number-of-ratings)
+  - [1.3 Contribution of different countries in the number of ratings (World map visualization)](#1.3-contribution-of-different-countries-in-the-number-of-ratings-world-map-visualization)
+  - [1.4 What is the most rated style in the whole world?](#1.4-what-is-the-most-rated-style-in-the-whole-world)
+  - [1.5 Supervised Learning: the relation between the features (appearance, aroma, palate, taste, overall) and response (rating)](#1.5-supervised-learning-the-relation-between-the-features-appearance-aroma-palate-taste-overall-and-response-rating)
+  - [1.6 Number of ratings per year](#1.6-number-of-ratings-per-year)
+  - [1.7 Do we have users in common for both datasets? Decision - Do we take BeerAdvocate or RateBeer or both datasets -](#1.7-do-we-have-users-in-common-for-both-datasets-decision-do-we-take-beeradvocate-or-ratebeer-or-both-datasets)
+
+- [**2. Exploration of Characteristics Specific to Users**](#2-exploration-of-characteristics-specific-to-users)
+  - [2.1 IPA](#2.1-ipa)
+  - [2.2 Pilsener](#2.2-pilsener)
+  - [2.3 Belg Strong Ale](#2.3-belg-strong-ale)
+  - [2.4 Distribution of alcohol degree among two different beer styles](#2.4-distribution-of-alcohol-degree-among-two-different-beer-styles)
+
+- [**3. Exploration of Beer Styles: Are There Seasonal Tendencies?**](#3-exploration-of-beer-styles-are-there-seasonal-tendencies)
+  - [3.1 Distribution of ratings per month for all beers](#3.1-distribution-of-ratings-per-month-for-all-beers)
+  - [3.2 Distribution of IPA, Pilsener, Belgian Strong Ale reviews normalized according to the total number of reviews](#3.2-distribution-of-ipa-pilsener-belgian-strong-ale-reviews-normalized-according-to-the-total-number-of-reviews)
+    - [3.2.1 IPA](#3.2.1-ipa)
+    - [3.2.2 Pilsener](#3.2.2-pilsener)
+    - [3.2.3 Belg Strong Ale](#3.2.3-belg-strong-ale)
+
+- [**4. Check Seasonality for Different Alcohol Degrees**](#4-check-seasonality-for-different-alcohol-degrees)
+  - [4.1 Distribution of ABV among the dataframe](#4.1-distribution-of-abv-among-the-dataframe)
+    - [4.1.1 Light beers - ABV < 5](#4.1.1-light-beers-abv-less-than-5)
+    - [4.1.2 Strong beers - ABV between 8 & 20](#4.1.2-strong-beers-abv-between-8-and-20)
+  - [4.2 T-test into ABV](#4.2-t-test-into-abv)
+    - [4.2.1 T-test into Light beers](#4.2.1-t-test-into-light-beers)
+    - [4.2.2 T-test into Strong beers](#4.2.2-t-test-into-strong-beers)
+
+- [**5. Trends Depending on Color?**](#5-trends-depending-on-color)
+  - [5.1 Distribution of estimated SRM values among the dataframe](#5.1-distribution-of-estimated-srm-values-among-the-dataframe)
+    - [5.1.1 Pale beers](#5.1.1-pale-beers)
+    - [5.1.2 Dark beers](#5.1.2-dark-beers)
+    - [5.1.3 Medium color](#5.1.3-medium-color)
+  - [5.2 T-test into SRM values](#5.2-t-test-into-srm-values)
+    - [5.2.1 T-test into Pale beers](#5.2.1-t-test-into-pale-beers)
+    - [5.2.2 T-test into Dark beers](#5.2.2-t-test-into-dark-beers)
+    - [5.2.3 T-test into Medium beers](#5.2.3-t-test-into-medium-beers)
+
+- [**6. Trends Depending on IBU (Bitterness)**](#6-trends-depending-on-ibu-bitterness)
+  - [6.1 Distribution of estimated IBU values among the dataframe](#6.1-distribution-of-estimated-ibu-values-among-the-dataframe)
+    - [6.1.1 Mild beers](#6.1.1-mild-beers)
+    - [6.1.2 Bitter beers](#6.1.2-bitter-beers)
+  - [6.2 T-test into IBU values](#6.2-t-test-into-ibu-values)
+    - [6.2.1 T-test into Mild beers](#6.2.1-t-test-into-mild-beers)
+    - [6.2.2 T-test into Bitter beers](#6.2.2-t-test-into-bitter-beers)
+
+- [**7. Causality Check on ABV, SRM, IBU**](#7-causality-check-on-abv-srm-ibu)
+
+- [**8. Best Beers**](#8-best-beers)
+
 # (Organisation du notebook)
 ## `0:` Notebook setup 
 - 0.1 Import libraries and some definitions
 - 0.2 Converting TXT to CSV and caching
-- 0.3 Loading data
+- 0.3 Pre-processing datasets for BeerAdvocate and RateBeer
+- 0.4 Data cleaning
 
-## `1:` Pre-processing datasets for BeerAdvocate and RateBeer
-- 1.1 Merge users and ratings to obtain location of each rating especially and change the date format and isolate month and year
+## `1:` Compare RateBeers and BeerAdvocate
+- 1.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer
+- 1.2 Are raters also writers? Check nbr of reviews compared to nbr of ratings
+- 1.3 Contribution of different countries in the number of ratings (World map visualisation)
+- 1.4 What is the most rated style in the whole world ?
+- 1.5 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
+- 1.6 Number of ratings per year
+- 1.7 Do we have users in common for both datasets?
 
-## `2:` Data cleaning
-- Remove unrelevant columns/duplicates, Identification of columns that have missing values, Replace abv (alcohol degree) missing values by the average abv of the corresponding beer style, 2.4 Drop NaN for location -> remove ratings where location is not mentioned
+Decision - Do we take **BeerAdvocate** or **RateBeer** or both datasets -
 
-## `3:` Compare RateBeers and BeerAdvocate
-- 3.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer
-- 3.2 Are raters also writers? Check nbr of reviews compared to nbr of ratings
-- 3.3 Contribution of different countries in the number of ratings
-- World map visualisation
-- 3.4 What is the most rated style in the whole world ?
-- 3.5 Supervised Learning : the relation between the features (*appearance, aroma, palate, taste, overall*) and response (*rating*)
-- 3.6 Number of ratings per year
-- 3.7 Do we have users in common for both datasets?
-- 
-## `4:` Exploration of the dataset RateBeer: Seasonal tendencies?
-- 4. 1 Distribution of ratings per month for all beers
-- 4.2 Distribution of IPA, Pilsener, Belgian Strong Ale reviews normalized according to total number of reviews
-- 4.4 Distribution of alcohol degree among two different beer styles
-- 
+## `2.` Exploration of characteristics specific to users
+- 2.1 IPA
+- 2.2 Pilsener
+- 2.3 Belg Strong Ale
+- 2.4 Distribution of alcohol degree among two different beer styles
 
-## `5.` Centralized research on users
-- 5.1 IPA
-- 5.2 Pilsener
-- 5.3 Belg Strong Ale
-- a toi de jouer theo
-- 5. Try to check for seasonal trends in terms of normalized ratings
-- 6. 5.1 IPA
-- 7. 5.2 Pilsener
-- 8. 5.3 Belgian Strong Ale
+## `3.` Exploration of Beer Styles: Are There Seasonal Tendencies?` 
+- 3.1 Distribution of ratings per month for all beers
+- 3.2 Distribution of IPA, Pilsener, Belgian Strong Ale reviews normalized according to total number of reviews
+- 3.2.1 IPA
+- 3.2.2 Pilsener
+- 3.2.3 Belg Strong Ale
 
-## `6.` Check seasonality for different alcohol degree
-- 6.1 Light beers
-- 6.2 Strong beers
-- 6 1/2 Other beer styles
+## `4.` Check seasonality for different alcohol degree
+- 4.1 Distribution of ABV among the dataframe
+- 4.1.1 Light beers - ABV < 5
+- 4.1.2 Strong beers - ABV between 8 & 20
+- 4.2. T-test into ABV
+- 4.2.1. T-test into Light beers
+- 4.2.2. T-test into Strong beers
 
-## `7.` For light and strong beers, ich if trends in rates
-- 7.1 Grades (ratings) light beers
+## `5.` Trends depending on color?
+- 5.1 Distribution of estimated srm values among the dataframe
+- 5.1.1 Pale beers
+- 5.1.2 Dark beers
+- 5.1.3 Medium color
+- 5.2. T-test into SRM values
+- 5.2.1. T-test into Pale beers
+- 5.2.2. T-test into Dark beers
+- 5.2.3. T-test into Medium beers
 
-## `8.` See for all the interesting years
-- Observe number of ratings per year to keep only the intersting years
-## `9.` t-test to check for significant difference between summer and winter
-- 9.1 Light beers
-- 9.2: Strong Beers
-## `10.` Trends depending on color?
-- 10.0 See the distribution of estimated srm values among the dataframe
-- 10.1 Pale beers
-- 10.2 Dark beers
-- 10.3 Medium color
-## `11.` Trends depending on IBU (bitterness)
-- 11.1 Mild beers
-- 11.2 Bitter beers
-- 11.3 Medium IBU = 30
-## `12.`  Scatter Plot to see a potential correlation between alcohol degree (ABV), color (SRM) and bitterness (IBU)
-## `13.`   Best beers
+## `6.` Trends depending on IBU (bitterness)
+- 6.1 Distribution of estimated IBU values among the dataframe
+- 6.1.1 Mild beers
+- 6.1.2 Bitter beers
+- 6.2. T-test into IBU values
+- 6.2.1. T-test into Mild beers
+- 6.2.2. T-test into Bitter beers
+  
+## `7.` Causality check on ABV, SRM, IBU
+
+## `8.`   Best beers
 
 # Abstract
 Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we will observe if those tendencies varies accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
