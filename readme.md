@@ -17,7 +17,7 @@
   - [1.6 Number of ratings per year](#1.6-number-of-ratings-per-year)
   - [1.7 Do we have users in common for both datasets? ](#1.7-do-we-have-users-in-common-for-both-datasets)
 
-## Decision - Do we take BeerAdvocate or RateBeer or both datasets -
+Decision - Do we take BeerAdvocate or RateBeer or both datasets -
 
 - [**2. Exploration of Characteristics Specific to Users**](#2-exploration-of-characteristics-specific-to-users)
   - [2.1 IPA](#2.1-ipa)
