@@ -190,7 +190,7 @@ def plot_map_ratings (user_ratings):
 
     return m
 
-def plot_STL(ratings_per_month, type):
+def plot_STL(ratings_per_month, type, plotTrend, plotSeasonality, plotResiduals):
     """
     Plot the general trends, the seasonal trends, and the noise
     """
@@ -206,24 +206,27 @@ def plot_STL(ratings_per_month, type):
     # Create 4 subplot figure
     plt.figure(figsize=(10, 6))
 
-    # Subplot 1: Trend
-    plt.subplot(411)
-    plt.plot(trend, label='Trend', color = type)
-    plt.legend(loc='best')
-    plt.grid()
+    if plotTrend == True :
+        # Subplot 1: Trend
+        plt.subplot(411)
+        plt.plot(trend, label='Trend', color = type)
+        plt.legend(loc='best')
+        plt.grid()
 
-    # Subplot 2: Seasonality
-    plt.subplot(412)
-    plt.plot(seasonal,label='Seasonality', color = type)
-    plt.legend(loc='best')
-    plt.grid()
+    if plotSeasonality == True :
+        # Subplot 2: Seasonality
+        plt.subplot(412)
+        plt.plot(seasonal,label='Seasonality', color = type)
+        plt.legend(loc='best')
+        plt.grid()
 
-      # Subplot 3: Residuals
-    plt.subplot(413, sharey=plt.gca())
-    plt.plot(residual, label='Residuals', color=type)
-    plt.legend(loc='best')
-    plt.tight_layout()
-    plt.grid()
+    if plotResiduals == True :
+        # Subplot 3: Residuals
+        plt.subplot(413, sharey=plt.gca())
+        plt.plot(residual, label='Residuals', color=type)
+        plt.legend(loc='best')
+        plt.tight_layout()
+        plt.grid()
 
     # Subplot 4: Placeholder for potential additional plots
     plt.subplot(414)
@@ -298,7 +301,7 @@ def feature_standardized(feature, df, beer_subset, date_start, date_end):
     
     return beer_subset_z_score
 
-def plot_seasonal_trends(beer_feature, title, ylabel, color, month_increment=3):
+def plot_seasonal_trends(beer_feature, title, ylabel, color, month_increment=3, plotSTL = True, plotTrend = True, plotSeasonality = True, plotResiduals = True):
     """
     Plot the seasonal trends, given roportion of ratings per month, or ratings per month...
 
@@ -331,8 +334,9 @@ def plot_seasonal_trends(beer_feature, title, ylabel, color, month_increment=3):
     beer_feature_STL = beer_feature.copy()
     beer_feature_STL.index = beer_feature_STL.index.to_timestamp()
 
-    #Plot seasonal trends
-    plot_STL(beer_feature_STL, color)
+    if plotSTL == True : 
+        #Plot seasonal trends
+        plot_STL(beer_feature_STL, color, plotTrend, plotSeasonality, plotResiduals)
     
 def hello():
     return 1
