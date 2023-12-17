@@ -232,42 +232,46 @@ def plot_STL(ratings_per_month, type, plotTrend, plotSeasonality, plotResiduals)
     plt.subplot(414)
     plt.axis('off')
 
-def proportion_nbr_ratings(df, beer_subset, date_start, date_end):
+def proportion_nbr_ratings(df, beer_subset, date_start, date_end, countries=[0]):
     """
-    Compute the proportion of number of ratings for a beer subset
+    Compute the proportion of the number of ratings for a beer subset
 
-    Given a subset of beers, a start date and end date, returns the proportion of number of ratings per month
-    (i.e. number of ratings of the beer subset normalized according to the number of ratings for all beers)
+    Given a subset of beers, a start date and end date, returns the normalized number of ratings per month
+    (i.e. the number of ratings of the beer subset normalized according to the number of ratings for all beers)
     of the subset in the given period.
-    
-    df: global dataframe, considering all the beers
+
+    df: global dataframe, considering all the beer ratings
     beer_subset: subset of beers (generally a subset of df)
     date_start: first date to consider
     date_end: last date to consider
+    countries: country of origin of the considered ratings.
     """
-    
-    # filter the dataframe information from date_start to date_end
-    #for all the beers
+
+    # filter the dataframe information from date_start to date_end for all the beers
     all_beers = df[
         (df['year'] >= date_start) &
         (df['year'] <= date_end)
     ]
-    
-    #for the beer subset
+
+    if (countries != [0]):
+        all_beers = all_beers[all_beers['country'].isin(countries)]
+        beer_subset = beer_subset[beer_subset['country'].isin(countries)]
+
+    # for the beer subset
     beer_subset = beer_subset[
         (beer_subset['year'] >= date_start) &
         (beer_subset['year'] <= date_end)
     ]
 
-    #Define the number of ratings per month for all beers around the world
-    all_beer_ratings = all_beers.groupby('year_month')["rating"].count() 
-    
-    #Number of ratings per month
+    # Define the number of ratings per month for all beers around the world
+    all_beer_ratings = all_beers.groupby('year_month')["rating"].count()
+
+    # Number of ratings per month for the beer subset
     beer_subset_nbr_ratings_per_month = beer_subset.groupby('year_month')["rating"].count()
 
-    #Proportion of number of ratings per month
+    # Proportion of the number of ratings per month
     beer_subset_prop_nbr_ratings = beer_subset_nbr_ratings_per_month / all_beer_ratings
-    
+
     return beer_subset_prop_nbr_ratings
 
 def feature_standardized(feature, df, beer_subset, date_start, date_end):
