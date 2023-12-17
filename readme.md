@@ -1,5 +1,7 @@
 # Every Season is Beerable
 
+Here is our DataStory, Grab your beer and be prepared --> https://shobashu.github.io/ChatChuiPT.github.io/
+
 ## **Table of Contents** <a name="table-of-contents"></a>
 
 - [**0. Notebook Set-up**](#0-notebook-setup)
