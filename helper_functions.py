@@ -11,6 +11,11 @@ import os
 from geopy.geocoders import Nominatim
 import folium
 import pycountry
+import plotly
+import plotly.graph_objects as go
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 def txt2csv(path_in, path_out):
     #Check for presence of 'ratings_ba_clean.csv'
@@ -342,9 +347,6 @@ def plot_seasonal_trends(beer_feature, title, ylabel, color, month_increment=3, 
         #Plot seasonal trends
         plot_STL(beer_feature_STL, color, plotTrend, plotSeasonality, plotResiduals)
     
-def hello():
-    return 1
-
     
 def get_trend_seasons(df, beer_subset, trend_months=[0], no_trend_months=[0], date_start = 2003, date_end = 2016):
     
@@ -443,3 +445,98 @@ def seasonality_degree (df, beer_subset, date_start=2003, date_end=2016):
 
 
     return (seasonal_std_per_year - residual_std_per_year) / (prop_ratings_by_year)
+
+def plot_STL_pyplot(ratings_per_m, type, path_to_save, height = 400, width = 800, plotTrend=True, plotSeasonality=True, plotResiduals=True):
+    """
+    Plot the general trends, the seasonal trends, and the noise using Plotly
+    """
+    ratings_per_month = ratings_per_m.copy()
+    ratings_per_month.index = ratings_per_month.index.to_timestamp()
+    
+    # Apply Seasonal-Trend decomposition using LOESS (STL)
+    stl = STL(ratings_per_month, seasonal=13, period=12)
+    result = stl.fit()  # fit the model
+
+    # Extract components from the decomposition
+    trend = result.trend
+    seasonal = result.seasonal
+    residual = result.resid
+
+    # Count the number of subplots to create
+    num_subplots = sum([plotTrend, plotSeasonality, plotResiduals])
+
+    # Create subplot figure with shared y-axis, dynamically adjusting the number of rows
+    fig = make_subplots(rows=num_subplots, cols=1, shared_yaxes=True)
+
+    # Counter variable to keep track of the current row
+    current_row = 1
+
+    if plotTrend:
+        # Subplot: Trend
+        fig.add_trace(go.Scatter(x=ratings_per_month.index, y=trend, mode='lines', name='Trend', line=dict(color=type)),
+                      row=current_row, col=1)
+        fig.update_yaxes(title_text="Trend", row=current_row, col=1)
+
+        current_row += 1
+
+    if plotSeasonality:
+        # Subplot: Seasonality
+        fig.add_trace(go.Scatter(x=ratings_per_month.index, y=seasonal, mode='lines', name='Seasonality', line=dict(color=type)),
+                      row=current_row, col=1)
+        fig.update_yaxes(title_text="Seasonality", row=current_row, col=1)
+
+        current_row += 1
+
+    if plotResiduals:
+        # Subplot: Residuals
+        fig.add_trace(go.Scatter(x=ratings_per_month.index, y=residual, mode='lines', name='Residuals', line=dict(color=type)),
+                      row=current_row, col=1)
+        fig.update_yaxes(title_text="Residuals", row=current_row, col=1)
+
+
+    # Update layout
+    fig.update_layout(height=height, width=width,
+                      showlegend=False
+                      margin=dict(l=0, r=0, b=0, t=0))
+
+    fig.show()
+    
+    fig.write_html(path_to_save)
+
+    
+def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, path_to_save, height=400, width=800):
+    """
+    Plot the seasonal trends, given roportion of ratings per month, or ratings per month...
+
+    Given a pandas Series showing the feature of a beer subset per month (e.g. rates per month)
+    returns plots showing the seasonal trend for this particular feature
+    
+    beer_feature: pandas Series with per month values
+    title: title of the plot
+    ylabel: label of the y axis, depending on the chosen feature (e.g. rate, or proportion of number of ratings)
+    color: plot color
+    month_increment: intervals of month to display. this only affects the labels, not the computation.
+    """
+    
+    # Assuming beer_feature is a pandas Series
+    x = beer_feature.index.astype(str)
+    y = beer_feature.values
+
+    # Create a line plot
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers', marker=dict(color=color)))
+    fig.update_layout(xaxis=dict(title='Month', tickangle=45, tickfont=dict(size=9)),
+                    yaxis=dict(title=ylabel),
+                    title=title,
+                    showlegend=False,
+                    plot_bgcolor='rgba(0,0,0,0)'
+                    margin=dict(l=0, r=0, b=0, t=0))
+    fig.update_layout(height=height, width=width, showlegend=False)
+
+
+    # Show the plot
+    fig.show()
+    
+    # Save the Plotly figure as an HTML file
+    fig.write_html(path_to_save)
