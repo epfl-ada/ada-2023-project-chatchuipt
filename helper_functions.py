@@ -446,7 +446,7 @@ def seasonality_degree (df, beer_subset, date_start=2003, date_end=2016):
 
     return (seasonal_std_per_year - residual_std_per_year) / (prop_ratings_by_year)
 
-def plot_STL_pyplot(ratings_per_m, type, path_to_save, height = 400, width = 800, plotTrend=True, plotSeasonality=True, plotResiduals=True):
+def plot_STL_pyplot(ratings_per_m, type, height = 400, width = 800, plotTrend=True, plotSeasonality=True, plotResiduals=True):
     """
     Plot the general trends, the seasonal trends, and the noise using Plotly
     """
@@ -500,15 +500,14 @@ def plot_STL_pyplot(ratings_per_m, type, path_to_save, height = 400, width = 800
                       margin=dict(l=0, r=0, b=0, t=0))
     
     # Set shared y-axes for all subplots
-    for i in range(2, num_subplots + 1):
-        fig.update_yaxes(matches='y', row=i, col=1)
+    if plotTrend == False:
+        for i in range(2, num_subplots + 1):
+            fig.update_yaxes(matches='y', row=i, col=1)
 
-    fig.show()
-    
-    fig.write_html(path_to_save)
+    return fig
 
     
-def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, path_to_save, height=400, width=800):
+def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, height=400, width=800):
     """
     Plot the seasonal trends, given roportion of ratings per month, or ratings per month...
 
@@ -540,10 +539,7 @@ def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, path_to_save
 
 
     # Show the plot
-    fig.show()
-    
-    # Save the Plotly figure as an HTML file
-    fig.write_html(path_to_save)
+    return fig
     
 
     
