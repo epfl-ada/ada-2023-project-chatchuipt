@@ -544,3 +544,42 @@ def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, path_to_save
     
     # Save the Plotly figure as an HTML file
     fig.write_html(path_to_save)
+    
+
+    
+def boxplot_plotly(summer_data, winter_data, name):
+    # Assuming summer_data_lb and winter_data_lb are pandas DataFrames
+    summer_data = summer_data['prop_nbr_of_ratings']
+    winter_data = winter_data['prop_nbr_of_ratings']
+    beer_type_name = name
+
+    # Perform t-test
+    t_stat, p_value = ttest_ind(summer_data, winter_data)
+
+    # Create boxplot traces
+    boxplot_trace_winter = go.Box(y=winter_data, boxpoints='all', jitter=0.3, pointpos=-1.8, name='Winter')
+    boxplot_trace_summer = go.Box(y=summer_data, boxpoints='all', jitter=0.3, pointpos=1.8, name='Summer')
+
+    # Create layout
+    layout = go.Layout(
+        title=f'{beer_type_name} normalized number of ratings: Summer vs Winter',
+        title_font=dict(size=14),
+        xaxis=dict(title='Season'),
+        yaxis=dict(title='Normalized number of ratings'),
+        height=400,  # Adjust the height as needed
+        width=600 
+    )
+
+    # Create figure
+    fig = go.Figure(data=[boxplot_trace_winter, boxplot_trace_summer], layout=layout)
+
+    # Add p-value annotation
+    formatted_p_value = "{:.2e}".format(p_value)
+    fig.add_annotation(
+        x=0.5, y=1,
+        text=f'p-value: {formatted_p_value}',
+        showarrow=False, xref='paper', yref='paper', xanchor='center', yanchor='bottom'
+    )
+
+    # Save Plotly figure to HTML file
+    return fig
