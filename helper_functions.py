@@ -496,7 +496,7 @@ def plot_STL_pyplot(ratings_per_m, type, path_to_save, height = 400, width = 800
 
     # Update layout
     fig.update_layout(height=height, width=width,
-                      showlegend=False
+                      showlegend=False,
                       margin=dict(l=0, r=0, b=0, t=0))
 
     fig.show()
@@ -530,7 +530,7 @@ def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, path_to_save
                     yaxis=dict(title=ylabel),
                     title=title,
                     showlegend=False,
-                    plot_bgcolor='rgba(0,0,0,0)'
+                    plot_bgcolor='rgba(0,0,0,0)',
                     margin=dict(l=0, r=0, b=0, t=0))
     fig.update_layout(height=height, width=width, showlegend=False)
 
