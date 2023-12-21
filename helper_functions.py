@@ -498,6 +498,10 @@ def plot_STL_pyplot(ratings_per_m, type, path_to_save, height = 400, width = 800
     fig.update_layout(height=height, width=width,
                       showlegend=False,
                       margin=dict(l=0, r=0, b=0, t=0))
+    
+    # Set shared y-axes for all subplots
+    for i in range(2, num_subplots + 1):
+        fig.update_yaxes(matches='y', row=i, col=1)
 
     fig.show()
     
