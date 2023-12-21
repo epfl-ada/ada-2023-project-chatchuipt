@@ -1,6 +1,6 @@
 # Every Season is Beerable
 
-Here is our DataStory, Grab your beer and be prepared : [here](https://shobashu.github.io/ChatChuiPT.github.io/) !!!
+Sip into the world of beer seasons with our DataStory – Grab your brew and dive in: [here](https://shobashu.github.io/ChatChuiPT.github.io/) !!!
 
 ## **Table of Contents** <a name="table-of-contents"></a>
 
