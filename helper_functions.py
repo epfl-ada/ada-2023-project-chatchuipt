@@ -784,7 +784,7 @@ def strip_state(location):
     else:
         return location
 
-def plot_STL2(ratings_per_month, type, l, plotOrNot, output_html="", fig):
+def plot_STL2(ratings_per_month, type, l, plotOrNot, fig, output_html=""):
     ratings_per_month.index = ratings_per_month.index.to_timestamp()
     stl = STL(ratings_per_month, seasonal=13, period=12)
     result = stl.fit()  # fit the model
@@ -793,5 +793,10 @@ def plot_STL2(ratings_per_month, type, l, plotOrNot, output_html="", fig):
 
     fig.add_trace(go.Scatter(x=seasonal.index, y=seasonal.values, mode='lines+markers', name=l, line=dict(color=type)))
     if plotOrNot:
+        fig.update_layout(
+            xaxis_title='Time',
+            yaxis_title='Degree of seasonality',
+            title='Pale Lager across continents'
+        )
         fig.show()
         fig.write_html(output_html)
