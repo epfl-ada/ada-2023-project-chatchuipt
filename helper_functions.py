@@ -18,36 +18,11 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-def txt2csv(path_in, path_out):
-    # Check for presence of 'ratings_ba_clean.csv'
-    if not os.path.isfile(path_in):
-        # Convert .txt to csv
-        df = text_to_df(path_in)
-        # Convert .txt to csv
-        df.to_csv(path_out)
-        return df
-    else:
-        print('.csv already present')
-        return None
-
-
-def csv2cache(df, path_in, cache_path):
-    # Check for presence of 'ratings_ba.pkl' (BeerAdvocate)
-    if not os.path.isfile(cache_path):
-        if df == None:
-            # Load the newly created .csv file
-            df = pd.read_csv(path_in)
-
-        # Cache the data
-        pickle.dump(df, open(cache_path, 'wb'))
-    else:
-        print('file already loaded and cached')
-
 
 def text_to_df(file_path):
     """
     Convert .txt files to dataframes,
-    which will then be converted to csv afterwards
+    which will then be converted to csv afterwards (using txt2csv)
     """
     # List to keep dictionaries for each beer
     beers_dic = []
@@ -76,8 +51,48 @@ def text_to_df(file_path):
     # Create a DataFrame from the list of beer dictionaries
     return pd.DataFrame(beers_dic)
 
+def txt2csv(path_in, path_out):
+    
+    """
+    Converts the original files from .txt to .csv, by calling the function txt2csv
+    """
+    # Check for presence of 'ratings_ba_clean.csv'
+    if not os.path.isfile(path_in):
+        # Convert .txt to csv
+        df = text_to_df(path_in)
+        # Convert .txt to csv
+        df.to_csv(path_out)
+        return df
+    else:
+        print('.csv already present')
+        return None
+    
+
+def csv2cache(df, path_in, cache_path):
+    
+    """
+    Put the big .csv files in cache memory, to gain time
+    when running the notebook
+    """
+    # Check for presence of 'ratings_ba.pkl' (BeerAdvocate)
+    if not os.path.isfile(cache_path):
+        if df == None:
+            # Load the newly created .csv file
+            df = pd.read_csv(path_in)
+
+        # Cache the data
+        pickle.dump(df, open(cache_path, 'wb'))
+    else:
+        print('file already loaded and cached')
+
 
 def data_reading(FOLDER_BA, FOLDER_RB):
+    
+    """
+    Read the relevant dataframes from BeerAdvocate and RateBeer
+    Returns: the dataframes in pd.DataFrame
+    """
+    
     ratings_ba = txt2csv(FOLDER_BA + 'ratings.txt', FOLDER_BA + 'ratings_ba_clean.csv')
     ratings_rb = txt2csv(FOLDER_RB + 'ratings.txt', FOLDER_RB + 'ratings_rb_clean.csv')
 
@@ -98,6 +113,37 @@ def data_reading(FOLDER_BA, FOLDER_RB):
 
     return beers_ba, breweries_ba, users_ba, ratings_ba, beers_rb, breweries_rb, users_rb, ratings_rb
 
+def data_cleaning(user_ratings):
+    """
+    Perform data cleaning operations on the user ratings DataFrame.
+    This function cleans the DataFrame by removing unnecessary columns, renaming columns for clarity,
+    handling missing values in the 'abv' (alcohol by volume) column by imputing with the mean 'abv' of the corresponding style,
+    and dropping rows with missing 'location' data.
+    Args:
+        user_ratings (pd.DataFrame): The DataFrame containing user ratings and other related information.
+    Returns:
+        pd.DataFrame: The cleaned DataFrame.
+    """
+    # Remove unnecessary columns
+    user_ratings.drop(['Unnamed: 0', 'user_name_y'], axis=1, inplace=True)
+
+    # Rename columns for clarity
+    user_ratings.rename(columns={'user_name_x': 'user_name'}, inplace=True)
+
+    # Calculate the percentage of missing values in the 'abv' column
+    missing_values_abv = user_ratings['abv'].isna().mean() * 100
+
+    # Impute missing 'abv' values with the mean 'abv' of the corresponding beer style
+    style_mean_abv = user_ratings.groupby('style')['abv'].transform('mean')
+    user_ratings['abv'].fillna(style_mean_abv, inplace=True)
+
+    # Calculate the percentage of missing values in the 'location' column
+    missing_values_location = user_ratings['location'].isna().mean() * 100
+
+    # Drop rows where 'location' data is missing
+    user_ratings = user_ratings.dropna(subset=['location'])
+
+    return user_ratings
 
 def data_pre_processing(data_to_merge1, data_to_merge2):
     """
@@ -117,10 +163,17 @@ def data_pre_processing(data_to_merge1, data_to_merge2):
     user_ratings['year'] = user_ratings['date'].dt.year
 
     user_ratings['year_month'] = user_ratings['date'].dt.to_period('M')
+    user_ratings = data_cleaning(user_ratings)
     return user_ratings
 
 
 def extract_country(location):
+    
+    """
+    Exctract only the country name from a string where other
+    informations are displayed (e.g transform 'USA, Missouri' into 'USA')
+    """
+    
     if ',' in location:
         # If there is a comma in the location, split the string and take the first part
         return location.split(',')[0].strip()
@@ -130,6 +183,10 @@ def extract_country(location):
 
 
 def get_coordinates(country):
+    """
+    Obtain the coordinates to plot the geopy maps
+    """
+    
     # Initialize a geolocator using Nominatim with a specific user_agent
     geolocator = Nominatim(user_agent="geoapiExercices")
     try:
@@ -167,8 +224,12 @@ manual_mapping = {
 }
 
 
-# Function to convert country name to ISO3166-1-Alpha-3 code
+
 def get_alpha3_code(country_name):
+    
+    """
+    Convert country name to ISO3166-1-Alpha-3 code
+    """
     # Check if the country is in the manual mapping
     if country_name in manual_mapping:
         return manual_mapping[country_name]
@@ -216,7 +277,11 @@ def plot_map_ratings(user_ratings):
 
 def plot_STL(ratings_per_month, type, plotTrend, plotSeasonality, plotResiduals):
     """
-    Plot the general trends, the seasonal trends, and the noise
+    Plot the general trends, the seasonal trends, and the noise for the evolution of normalized number of ratings of a beer subset
+    
+    ratings_per_month: Normalized number of ratings for each month, in an interval of years
+    type: color of the plot
+    plotTrend, plotSeasonality, plotResiduals: boolean values, to decide which subplot to display
     """
     # Apply Seasonal-Trend decomposition using LOESS (STL)
     stl = STL(ratings_per_month, seasonal=13, period=12)
@@ -259,8 +324,6 @@ def plot_STL(ratings_per_month, type, plotTrend, plotSeasonality, plotResiduals)
 
 def proportion_nbr_ratings(df, beer_subset, date_start, date_end, countries=[0]):
     """
-    Compute the proportion of the number of ratings for a beer subset
-
     Given a subset of beers, a start date and end date, returns the normalized number of ratings per month
     (i.e. the number of ratings of the beer subset normalized according to the number of ratings for all beers)
     of the subset in the given period.
@@ -302,10 +365,14 @@ def proportion_nbr_ratings(df, beer_subset, date_start, date_end, countries=[0])
 
 def feature_standardized(feature, df, beer_subset, date_start, date_end):
     """
-    Compute the standardized feature (e.g. standardized rating, aroma, palate...) for a beer subset
-
     Given a subset of beers, a start date and end date, returns the standardized feature mean(rate, aroma, palate...) per month
     (i.e. z-scores), of the subset in the given period.
+    
+    feature: chosen characteristics (aroma, palate...)
+    df: global dataframe, considering all the beer ratings
+    beer_subset: subset of beers (generally a subset of df)
+    date_start: first date to consider
+    date_end: last date to consider
     """
 
     # filter the dataframe information from date_start to date_end
@@ -374,8 +441,13 @@ def plot_seasonal_trends(beer_feature, title, ylabel, color, month_increment=3, 
 def get_trend_seasons(df, beer_subset, trend_months=[0], no_trend_months=[0], date_start=2003, date_end=2016):
     """
     
-    returns two dataframe with the proportion of ratings by months: one for the 'trend months', and one for the 'no_trend_months'
+    Returns two dataframe with the proportion of ratings by months: one for the 'trend months', and one for the 'no_trend_months'
     It allows us to keep the proportion od ratings for interesting months (e.g. winter months vs. summer months)
+    
+    df: global dataframe, considering all the beer ratings
+    beer_subset: subset of beers (generally a subset of df)
+    trend_months: if = [0], 3 months with higher normalized number of ratings
+    no_trend_months: if = [0], 3 months with lower normalized number of ratings
     
     """
     # Define proportion of number of ratings of the beer subset
@@ -410,6 +482,10 @@ def boxplot_winter_vs_summer(summer_data, winter_data, beer_type_name):
     Compute the p-value between the two datasets
     and plot the two boxplots corresponding to each dataset
     
+    summer_data: normalized number of ratings of the beer_subset only for summer months
+    winter_data: normalized number of ratings of the beer_subset only for winter months
+    beer_type name: name of the beer type for the title
+    
     """
 
     t_stat, p_value = ttest_ind(summer_data, winter_data)
@@ -428,6 +504,19 @@ def boxplot_winter_vs_summer(summer_data, winter_data, beer_type_name):
 
 
 def seasonality_degree(df, beer_subset, date_start=2003, date_end=2016):
+    
+    """
+    
+    Compute a 'degree' of seasonality: the higher the amplitude of the oscillations,
+    the higher the seasonality degree. Value between from 0 to +infinity
+    
+    df: global dataframe, considering all the beer ratings
+    beer_subset: subset of beers (generally a subset of df)
+    date_start: first date to consider
+    date_end: last date to consider
+    
+    """
+    
     beer_subset_prop_nbr_ratings = proportion_nbr_ratings(df, beer_subset, date_start, date_end)
 
     stl = STL(beer_subset_prop_nbr_ratings, seasonal=13, period=12)
@@ -468,7 +557,11 @@ def seasonality_degree(df, beer_subset, date_start=2003, date_end=2016):
 def plot_STL_pyplot(ratings_per_m, type, height=400, width=800, plotTrend=True, plotSeasonality=True,
                     plotResiduals=True):
     """
-    Plot the general trends, the seasonal trends, and the noise using Plotly
+    Same as plot_STL(), but using Plotly
+    
+    ratings_per_month: Normalized number of ratings for each month, in an interval of years
+    type: color of the plot
+    plotTrend, plotSeasonality, plotResiduals: boolean values, to decide which subplot to display
     """
     ratings_per_month = ratings_per_m.copy()
     ratings_per_month.index = ratings_per_month.index.to_timestamp()
@@ -530,8 +623,8 @@ def plot_STL_pyplot(ratings_per_m, type, height=400, width=800, plotTrend=True, 
 
 def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, height=400, width=800):
     """
-    Plot the seasonal trends, given roportion of ratings per month, or ratings per month...
-
+    Same as plot_seasonal_trends but using Plotly
+    
     Given a pandas Series showing the feature of a beer subset per month (e.g. rates per month)
     returns plots showing the seasonal trend for this particular feature
     
@@ -564,6 +657,17 @@ def plot_seasonal_trends_pyplot(beer_feature, title, ylabel, color, height=400, 
 
 
 def boxplot_plotly(summer_data, winter_data, name):
+    
+    """
+    
+    Same as boxplot_winter_vs_summer() but using Plotly
+    
+    summer_data: normalized number of ratings of the beer_subset only for summer months
+    winter_data: normalized number of ratings of the beer_subset only for winter months
+    beer_type name: name of the beer type for the title
+    
+    """
+    
     # Assuming summer_data_lb and winter_data_lb are pandas DataFrames
     summer_data = summer_data['prop_nbr_of_ratings']
     winter_data = winter_data['prop_nbr_of_ratings']
@@ -607,6 +711,19 @@ def normalize_column(column):
 
 
 def seasonality_degree_2(df, ids, date_start=2003, date_end=2016):
+    
+    """
+    
+    Computes a new seasonality degree, but takes into account
+    if the 'trend' is during the summer or the winter. Values from -infinity and +infinity.
+    
+    df: global dataframe, considering all the beer ratings
+    ids: index of the chosen beers on the corresponding df 
+    date_start: first date to consider
+    date_end: last date to consider
+    
+    """
+    
     degrees = np.array([])
     output = pd.DataFrame(columns=['beer_id', 'degree'])
     i = 0
