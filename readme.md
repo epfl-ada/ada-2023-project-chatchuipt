@@ -65,7 +65,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 - [**8. Best Beers**](#8-best-beers)
 
 # Abstract
-Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we will observe if those tendencies varies accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we will investigate the comment's enthusiasm for a beer accross season and see if this correlates with the seasonal cyles observed. Finally, we will see how the beweries take advantage of those cyclic consumption rates in their beer proposal.
+Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we will observe if those tendencies varies accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we then tried to identify the best features in order to predict the seasonality of a beer. Once those features have been identified, a classifier model was implemented to predict the seasonability of a beer based on its characteristics. Finally, the influence of the location for the beer rating was performed, to see if consummer from north america, europa or oceania tend to have different consumption habits.
 
 
 # Research Questions
@@ -75,31 +75,21 @@ Winter is a season for brown beers, high on alcohol to warm us up, while summer 
 ## `Task 2:` Ephemere and long-lasting season dependent beers
 - Do some beers are highly rated during only one season during one specific year and then are forgotten in the next years ?
 
-## `Task 3:` Features of season-dependent beers
-- Which characteristics such as the aroma, the taste, etc.. of a beer makes it to be more a spring-beer or a fall-beer ?
+## `Task 3:` User specific features of season-dependent beers
+- Which users specific characteristics such as the aroma, the taste, etc.. of a beer makes it to be more a spring-beer or a fall-beer ?
 
-## `Task 4:` Drinking at the wrong season 
-- Is there a shift of the season-dependent beer ratings if it is not tasted during the adequate period ?
+## `Task 4:` Beer specific features of season-dependent beers
+- Are the alcool degree (ABV), the bitterness (IBU) and the beer coloration (SRM) also important beer specific features for the seasonal dependency ?
 
-## `Task 5:` Dataset Quality Enhancement
-### Professional vs Occasional drinker
-- The dataset contains a high number of user of different profiles. We identified 2 main types of users:
-    - `A:` The professional rater, he rates a high number of beers, accross a wide spectrum of beer style throughout the year, he might not taste beers accordingly to his preferences or what fits the current season
-    - `B:` The occasional rater, he rates a small number of beers, spontaneously testing beers he wants to
-- Isolate group `A` from `B` and re-run all the analysis to see wether or not the seasonable beer pattern is accentuated without the group `B`
-- <img src="Images/chad_beer.png" alt="image" width="500" height="auto">
+## `Task 5:` Beer seasonality predictor model
+-Is it possbile to predict the seasonality of a beer based only on its ABV, IBU and SRM using linear models ? 
 
-### Elude ratings from south hemipshere
-- Having in the same dataset ratings from south and north hemisphere might lead to self-canceling of the season cycles. One could either delete ratings from the S.H or offset by 6 months the time of S.H ratings
 
-## `Task 6:` Sentimental analysis
-- Compute the "distance" between the actual rating's grade and the inferred grade from the textual content (using natural language processing tools like [Hugging Face](https://huggingface.co/tasks/text-classification) or the proposed method from paper http://i.stanford.edu/~julian/pdfs/icdm2012.pdf)
-- Perform this test for group `A` and `B` on seasonal and non-seasonal beers
-- Will users from group `B` be more precise in their ratings than group `A` for seasonal beers, is it also the case for non-seasonal beers ?
+## `Task 6:` Region specificity
+Now that a worldwide pattern have been observed for the number of ratings for different styles of beers, do we find also this pattern at smaller scale ? Do we have different specific regionality patterns in North America, Europa or Oceania ?
 
-## `Task 7:` Seasonal beers oriented breweries
-- Identify wether or not breweries focus more on seasonal beers than others
-- If so, what are their characteristics ?
+## `Task 7:` Best seasonal beer award 
+Beer styles regroup a big amount of beers and represent an average seasonability for a batch of beers. Thus, can we identify the most winter and summer beers, which are the most impacted by the year periods ?
 
 # Proposed additional datasets (if any) 
 - Two additionals datasets were provided to complete the data with the bitterness index and the color index of the beer. The Bitterness dataset (called IBU) and the colorness (called SRM) were found based on multiple site comparisons and ChatGPT to confirm the reliability of the results. Note that those values are only an approximation of the real indexes but due to the binary classification (and not continuous prediction), the error that could be added is reasonable as we exclude beers with intermediate bitterness and/or color and only focus on extreme values for the seasonality.
