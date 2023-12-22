@@ -11,7 +11,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 
 - [**1. Compare RateBeers and BeerAdvocate**](#1-compare-ratebeers-and-beeradvocate)
   - [1.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer](#1.1-distribution-of-ratings-and-reviews-per-user-between-beeradvocate-and-ratebeer)
-  - [1.2 Are raters also writers? Check the number of reviews compared to the number of ratings](#1.2-are-raters-also-writers-check-the-number-of-reviews-compared-to-the-number-of-ratings)
+  - [1.2 Are raters also writers? Check the number of ratings compared to the number of ratings](#1.2-are-raters-also-writers-check-the-number-of-ratings-compared-to-the-number-of-ratings)
   - [1.3 Contribution of different countries in the number of ratings (World map visualization)](#1.3-contribution-of-different-countries-in-the-number-of-ratings-world-map-visualization)
   - [1.4 What is the most rated style in the whole world?](#1.4-what-is-the-most-rated-style-in-the-whole-world)
   - [1.5 Supervised Learning: the relation between the features (appearance, aroma, palate, taste, overall) and response (rating)](#1.5-supervised-learning-the-relation-between-the-features-appearance-aroma-palate-taste-overall-and-response-rating)
@@ -27,7 +27,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 
 - [**3. Exploration of Beer Styles: Are There Seasonal Tendencies?**](#3-exploration-of-beer-styles-are-there-seasonal-tendencies)
   - [3.1 Distribution of ratings per month for all beers](#3.1-distribution-of-ratings-per-month-for-all-beers)
-  - [3.2 Distribution of IPA, Pilsener, Belgian Strong Ale reviews normalized according to the total number of reviews](#3.2-distribution-of-ipa-pilsener-belgian-strong-ale-reviews-normalized-according-to-the-total-number-of-reviews)
+  - [3.2 Distribution of IPA, Pilsener, Belgian Strong Ale ratings normalized according to the total number of ratings](#3.2-distribution-of-ipa-pilsener-belgian-strong-ale-ratings-normalized-according-to-the-total-number-of-ratings)
     - [3.2.1 IPA](#3.2.1-ipa)
     - [3.2.2 Pilsener](#3.2.2-pilsener)
     - [3.2.3 Belg Strong Ale](#3.2.3-belg-strong-ale)
@@ -99,11 +99,13 @@ Now that a worldwide pattern have been observed for the number of ratings for di
 the contribution of different countries in the % of ratings was plotted in Beer Advocate and RateBeer and those percentages were mapped.
 For the seasonal variability of ratings, we firstly identified the most rated style in the world. Then, we compared the weighting of the ratings for each sites. This was done by performing a LinearRegression for the two sites and taking as features the appearance, aroma, palate, taste and overall and as output the rating.
 
-- The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patterns of season-dependency.
+- The datasets were now ready to be analysed more in depth. The monthly normalized number of ratings was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly evolution of the IPA, Pilsner and Belgian Strong Ale were studied to observe the first patterns of season-dependency.
 
 - With statistical analysis such as t-test and statistical model such as Seasonal-Trend decomposition using LOESS (STL) we analysed which feature such as alcool degree, appearance, aroma, palate, taste, abv (alcool degree), ibu (bitterness index) or srm (color of the beer) have the highest impact on the seasonality of the beer. This enables us to identify which kind of beers are prefered at which time of the year.
 
-- Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement this model, linear and polynomial regressions methods were performed. Those methods allowed to classify beers, based on its ABV, IBU and SRM values, as summer or winter beers.
+- Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement this model, linear and polynomial regressions methods were performed. However, it did not yield relevant results.
+
+- We created a seasonality degree to know which beer styles are the most seasonals. Finally, we explored the seasonality of one of the beer style identified using the seasonality degree, but for different regions (North America, Europe, Oceania).
 
 # Timeline and organization within the team
 
