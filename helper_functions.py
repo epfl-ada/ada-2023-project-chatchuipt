@@ -579,3 +579,60 @@ def boxplot_plotly(summer_data, winter_data, name):
 
     # Save Plotly figure to HTML file
     return fig
+
+# For seasonal estimation part
+def normalize_column(column):
+    return (column - column.min()) / (column.max() - column.min())
+
+def seasonality_degree_2(df, ids, date_start=2003, date_end=2016):
+    degrees = np.array([])
+    output = pd.DataFrame(columns=['beer_id', 'degree'])
+    i = 0
+    for id in ids:
+        beer_subset_prop_nbr_ratings = proportion_nbr_ratings(df, df.loc[df.beer_id == id], date_start, date_end)
+        #display(beer_subset_prop_nbr_ratings)
+        stl = STL(beer_subset_prop_nbr_ratings, period=12)
+        result = stl.fit() # fit the model
+
+        # Extract components from the decomposition
+        trend = result.trend
+        seasonal = result.seasonal
+        residual = result.resid
+        
+        if not np.all(np.isnan(seasonal)):
+            #Mean Proportion of ratings for each year
+            prop_ratings_by_year = beer_subset_prop_nbr_ratings.groupby(beer_subset_prop_nbr_ratings.index.year).mean()
+            prop_ratings_by_year = prop_ratings_by_year.rename_axis('year')
+            
+            #Get the standard deviation of seasonal value per year, and the std value for the noise
+            seasonal_df = seasonal.copy().reset_index()
+            residual_df = residual.copy().reset_index()
+            
+            #Create column month
+            seasonal_df['month'] = seasonal_df['year_month'].astype(str).str[-2:]
+            residual_df['month'] = residual_df['year_month'].astype(str).str[-2:]
+
+            #Create column year
+            seasonal_df['year'] = seasonal_df['year_month'].astype(str).str[0:4]
+            residual_df['year'] = residual_df['year_month'].astype(str).str[0:4]
+            
+            #Group by year and calculate std
+            seasonal_std_per_year = seasonal_df.groupby('year')['season'].max() - seasonal_df.groupby('year')['season'].min()
+            residual_std_per_year = residual_df.groupby('year')['resid'].max() - residual_df.groupby('year')['resid'].min()
+            
+            #Change type of index to have int 
+            seasonal_std_per_year.index = seasonal_std_per_year.index.astype('int')
+            residual_std_per_year.index = residual_std_per_year.index.astype('int')
+
+            #display(seasonal)
+            highest_month = int(seasonal_df.loc[seasonal_df.season.idxmax(), 'month'])
+            summer = -1 + (highest_month in range(4, 9+1)) * 2
+            #print(highest_month, summer)
+            degree = (abs(seasonal_std_per_year.mean() - residual_std_per_year.mean())) / (prop_ratings_by_year.mean()) * summer * 100
+            #degree = (abs(seasonal_std_per_year.mean() - residual_std_per_year.mean())) * summer
+            print(f"{i} out of {len(ids)}, degree: {degree}, month: {highest_month}, summer: {summer}")
+            output.loc[i] = [id, degree]
+            i += 1
+    output = output.dropna()
+    output['beer_id'] = output['beer_id'].astype(int)
+    return output
