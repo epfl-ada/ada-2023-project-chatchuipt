@@ -66,6 +66,15 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 
 - [**9.Conclusion**](#9-conclusion)
 
+# Data
+This dataset consists of beer ratings and reviews from two Beer rating websites: BeerAdvocate and RateBeer, for a period of 17 years ranging from 2001 to 2017.
+- Two folders are present in the folder data/: BeerAdvocate/ and RateBeer/. Each one contains those respective files:
+- beers.csv
+- breweries.csv
+- users.csv
+- ratings.txt
+This is important to make sure that the files are in this architecture to run the notebook.
+
 # Abstract
 Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we observed if those tendencies varied accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we then tried to identify the best features in order to predict the seasonality of a beer. Once those features have been identified, the location was studied in order to evaluate the north america, europa and oceania beer consumption habits and their specificities. Once the seasonality was identified, the next step was to predict it by implementing a classifier model based the beer characteristics. Finally, to conclude the quest of seasonality, the most summer and winter trendy beers were identified.
 
