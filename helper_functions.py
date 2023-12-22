@@ -493,9 +493,9 @@ def boxplot_winter_vs_summer(summer_data, winter_data, beer_type_name):
     plt.figure(figsize=(5, 4))
 
     plt.boxplot([winter_data, summer_data], labels=['Winter', 'Summer'])
-    plt.title(f'{beer_type_name} : Proportion of ratings during the summer vs winter')
+    plt.title(f'{beer_type_name} : Normalized number of ratings during the summer vs winter')
     plt.xlabel('Season')
-    plt.ylabel('Proportion of ratings')
+    plt.ylabel('Normalized number of ratings')
 
     formatted_p_value = "{:.2e}".format(p_value)
     plt.text(1.5, max(max(winter_data), max(summer_data)), f'p-value: {formatted_p_value}', ha='center', va='bottom')
