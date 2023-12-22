@@ -145,10 +145,13 @@ an adequate python environment to run this project :
 
 # Repository architecture
 <pre>
-├── Maps
-│   └── Ratings repartitions for Beeradvocate and Ratebeer
-├── Website
-│   └── Plots and images added to the website
+├── Maps # ratings repartitions maps for Beeradvocate and Ratebeer
+│   ├── map_ba.html
+│   └── map_rb.html
+├── data
+│   └── RateBeer #additional datasets
+│	├── ibu_values.csv
+│	└── srm_values.csv
 ├── .gitignore
 ├── helper_functions.py
 ├── main.ipynb
