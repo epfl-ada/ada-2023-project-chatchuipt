@@ -626,7 +626,7 @@ def seasonality_degree_2(df, ids, date_start=2003, date_end=2016):
 
             #display(seasonal)
             highest_month = int(seasonal_df.loc[seasonal_df.season.idxmax(), 'month'])
-            summer = -1 + (highest_month in range(4, 9+1)) * 2
+            summer = -1 + (highest_month in range(4, 9)) * 2
             #print(highest_month, summer)
             degree = (abs(seasonal_std_per_year.mean() - residual_std_per_year.mean())) / (prop_ratings_by_year.mean()) * summer * 100
             #degree = (abs(seasonal_std_per_year.mean() - residual_std_per_year.mean())) * summer
