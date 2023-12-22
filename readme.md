@@ -166,6 +166,8 @@ an adequate python environment to run this project :
 │       ├── users.csv
 │	├── ibu_values.csv #additional datasets
 │	└── srm_values.csv
+├── lacking_image
+│	└── pale_lager.png
 ├── .gitignore
 ├── helper_functions.py
 ├── main.ipynb
