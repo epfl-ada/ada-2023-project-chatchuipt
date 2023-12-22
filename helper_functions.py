@@ -779,12 +779,43 @@ def seasonality_degree_2(df, ids, date_start=2003, date_end=2016):
     return output
 
 def strip_state(location): 
+    """
+    Strips the state or additional information from a location string.
+
+    This function takes a location string and returns only the first part of it
+    by splitting it at the first comma. If there is no comma, it returns the 
+    location string as is.
+
+    Parameters:
+    location (str): The location string to be processed.
+
+    Returns:
+    str: The first part of the location string before the comma, or the entire string
+         if no comma is present.
+    """
     if ',' in location:
         return location.split(',',1)[0]
     else:
         return location
 
 def plot_STL2(ratings_per_month, type, l, plotOrNot, fig, output_html=""):
+    """
+    Plots the Seasonal-Trend decomposition using LOESS (STL) for a given time series data.
+
+    This function applies the STL decomposition to a time series data and plots the 
+    seasonal component. It can also output the plot as an HTML file.
+
+    Parameters:
+    ratings_per_month (DataFrame): The time series data to be decomposed.
+    type (str): The line color type for the plot.
+    l (str): The label for the plot trace.
+    plotOrNot (bool): Flag to indicate whether to display the plot or not.
+    fig (go.Figure): The figure object to which the trace will be added.
+    output_html (str, optional): Path to save the HTML output of the plot. Defaults to "".
+
+    Returns:
+    None: The function adds a trace to the given figure object and optionally displays the plot and saves it as HTML.
+    """
     ratings_per_month.index = ratings_per_month.index.to_timestamp()
     stl = STL(ratings_per_month, seasonal=13, period=12)
     result = stl.fit()  # fit the model
