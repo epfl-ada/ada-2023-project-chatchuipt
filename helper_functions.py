@@ -784,7 +784,7 @@ def strip_state(location):
     else:
         return location
 
-def plot_STL2(ratings_per_month, type, l, plotOrNot, output_html=""):
+def plot_STL2(ratings_per_month, type, l, plotOrNot, output_html="", fig):
     ratings_per_month.index = ratings_per_month.index.to_timestamp()
     stl = STL(ratings_per_month, seasonal=13, period=12)
     result = stl.fit()  # fit the model
