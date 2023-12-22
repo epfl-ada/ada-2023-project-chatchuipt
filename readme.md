@@ -149,8 +149,20 @@ an adequate python environment to run this project :
 │   ├── map_ba.html
 │   └── map_rb.html
 ├── data
-│   └── RateBeer #additional datasets
-│	├── ibu_values.csv
+│   ├── BeerAdvocate
+│   │   ├── beers.csv
+│   │   ├── breweries.csv
+│   │   ├── ratings.txt
+│   │   ├── reviews.txt
+│   │   └── users.csv
+│   │
+│   └── RateBeer 
+│       ├── beers.csv
+│       ├── breweries.csv
+│       ├── ratings.txt
+│       ├── reviews.txt
+│       ├── users.csv
+│	├── ibu_values.csv #additional datasets
 │	└── srm_values.csv
 ├── .gitignore
 ├── helper_functions.py
