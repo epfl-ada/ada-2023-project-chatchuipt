@@ -77,16 +77,16 @@ Winter is a season for brown beers, high on alcohol to warm us up, while summer 
 ## `Task 2:` Season-dependent beer: User specific characteristics
 - Are the user specific characteristics (i.e. rating, overall, aroma, palate...) changing depending on the season?
 
-## `Task 5:` Beer specific features of season-dependent beers
+## `Task 3:` Beer specific characteristics of season-dependent beers
 - Are the alcool degree (ABV), the bitterness (IBU) and the beer coloration (SRM) also important beer specific features for the seasonal dependency ?
 
-## `Task 6:` Best seasonal beer award 
+## `Task 4:` Best seasonal beer award 
 Beer styles regroup a big amount of beers and represent an average seasonality for a batch of beers. Thus, can we identify the most winter and summer beers, which are the most impacted by the year periods ?
 
-## `Task 7:` Beer seasonality predictor model
+## `Task 5:` Beer seasonality predictor model
 -Is it possbile to predict the seasonality of a beer based only on its ABV, IBU and SRM using linear models ? 
 
-## `Task 8:` Region specificity
+## `Task 6:` Region specificity
 Now that a worldwide pattern have been observed for the number of ratings for different styles of beers, do we find also this pattern at smaller scale ? Do we have different specific regionality patterns in North America, Europa or Oceania ?
 
 # Proposed additional datasets (if any) 
