@@ -73,6 +73,7 @@ This dataset consists of beer ratings and reviews from two Beer rating websites:
 - breweries.csv
 - users.csv
 - ratings.txt
+
 This is important to make sure that the files are in this architecture to run the notebook.
 
 # Abstract
