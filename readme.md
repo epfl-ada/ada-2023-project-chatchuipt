@@ -167,9 +167,6 @@ an adequate python environment to run this project :
 ├── .gitignore
 ├── helper_functions.py
 ├── main.ipynb
-├── main_html.ipynb
-├── main_plotly.ipynb
-├── output.html
 ├── readme.md
 └── requirements.txt
 </pre>
