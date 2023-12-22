@@ -146,3 +146,18 @@ an adequate python environment to run this project :
 
 *install the packages: pip install -r requirements.txt
 
+# Repository architecture
+<pre>
+├── Maps
+│   └── Ratings repartitions for Beeradvocate and Ratebeer
+├── Website
+│   └── Plots and images added to the website
+├── .gitignore
+├── helper_functions.py
+├── main.ipynb
+├── main_html.ipynb
+├── main_plotly.ipynb
+├── output.html
+├── readme.md
+├── requirements.txt
+</pre>
