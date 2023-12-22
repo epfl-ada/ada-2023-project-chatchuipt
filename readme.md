@@ -65,7 +65,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 - [**8. Best Beers**](#8-best-beers)
 
 # Abstract
-Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we will observe if those tendencies varies accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we then tried to identify the best features in order to predict the seasonality of a beer. Once those features have been identified, a classifier model was implemented to predict the seasonability of a beer based on its characteristics. Finally, the influence of the location for the beer rating was performed, to see if consummer from north america, europa or oceania tend to have different consumption habits.
+Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we observed if those tendencies varied accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we then tried to identify the best features in order to predict the seasonality of a beer. Once those features have been identified, the location was studied in order to evaluate the north america, europa and oceania beer consumption habits and their specificities. Once the seasonality was identified, the next step was to predict it by implementing a classifier model based the beer characteristics. Finally, to conclude the quest of seasonality, the most summer and winter trendy beers were identified.
 
 
 # Research Questions
@@ -84,12 +84,11 @@ Winter is a season for brown beers, high on alcohol to warm us up, while summer 
 ## `Task 5:` Beer seasonality predictor model
 -Is it possbile to predict the seasonality of a beer based only on its ABV, IBU and SRM using linear models ? 
 
-
 ## `Task 6:` Region specificity
 Now that a worldwide pattern have been observed for the number of ratings for different styles of beers, do we find also this pattern at smaller scale ? Do we have different specific regionality patterns in North America, Europa or Oceania ?
 
 ## `Task 7:` Best seasonal beer award 
-Beer styles regroup a big amount of beers and represent an average seasonability for a batch of beers. Thus, can we identify the most winter and summer beers, which are the most impacted by the year periods ?
+Beer styles regroup a big amount of beers and represent an average seasonality for a batch of beers. Thus, can we identify the most winter and summer beers, which are the most impacted by the year periods ?
 
 # Proposed additional datasets (if any) 
 - Two additionals datasets were provided to complete the data with the bitterness index and the color index of the beer. The Bitterness dataset (called IBU) and the colorness (called SRM) were found based on multiple site comparisons and ChatGPT to confirm the reliability of the results. Note that those values are only an approximation of the real indexes but due to the binary classification (and not continuous prediction), the error that could be added is reasonable as we exclude beers with intermediate bitterness and/or color and only focus on extreme values for the seasonality.
@@ -105,8 +104,7 @@ For the seasonal variability of ratings, we firstly identified the most rated st
 
 - With statistical analysis such as t-test we analysed which feature such as alcool degree, appearance, aroma, palate, taste, abv (alcool degree), ibu (bitterness index) or srm (color of the beer) have the highest impact on the seasonality of the beer. This will help us to identify which kind of beers are prefered at which time of the year.
 
-- Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement a this model, linear and polynomial regressions methods were performed. Those methods allowed to predict if a beer, based on its ABV, IBU and SRM values would tend to be more like a summer or a winter beer.
-
+- Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement this model, linear and polynomial regressions methods were performed. Those methods allowed to classify beers, based on its ABV, IBU and SRM values, as summer or winter beers.
 
 # Timeline and organization within the team
 
