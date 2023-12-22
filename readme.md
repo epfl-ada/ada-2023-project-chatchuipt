@@ -7,9 +7,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 
 - [**0. Notebook Set-up**](#0-notebook-setup)
   - [0.1 Import libraries and some definitions](#0.1-import-libraries-and-some-definitions)
-  - [0.2 Converting TXT to CSV and caching](#0.2-converting-txt-to-csv-and-caching)
-  - [0.3 Pre-processing datasets for BeerAdvocate and RateBeer](#0.3-pre-processing-datasets-for-beeradvocate-and-ratebeer)
-  - [0.4 Data cleaning](#0.4-data-cleaning)
+  - [0.2 Converting TXT to CSV and caching, pre-processing datasets for BeerAdvocate and RateBeer & Data Cleaning](#0.2-converting-txt-to-csv-and-caching-pre-processing-datasets-for-beeradvocate-and-ratebeer-and-data-cleaning) 
 
 - [**1. Compare RateBeers and BeerAdvocate**](#1-compare-ratebeers-and-beeradvocate)
   - [1.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer](#1.1-distribution-of-ratings-and-reviews-per-user-between-beeradvocate-and-ratebeer)
