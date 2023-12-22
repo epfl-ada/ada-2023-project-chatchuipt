@@ -159,5 +159,5 @@ an adequate python environment to run this project :
 ├── main_plotly.ipynb
 ├── output.html
 ├── readme.md
-├── requirements.txt
+└── requirements.txt
 </pre>
