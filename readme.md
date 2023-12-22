@@ -7,9 +7,7 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 
 - [**0. Notebook Set-up**](#0-notebook-setup)
   - [0.1 Import libraries and some definitions](#0.1-import-libraries-and-some-definitions)
-  - [0.2 Converting TXT to CSV and caching](#0.2-converting-txt-to-csv-and-caching)
-  - [0.3 Pre-processing datasets for BeerAdvocate and RateBeer](#0.3-pre-processing-datasets-for-beeradvocate-and-ratebeer)
-  - [0.4 Data cleaning](#0.4-data-cleaning)
+  - [0.2 Converting TXT to CSV and caching, pre-processing datasets for BeerAdvocate and RateBeer & Data Cleaning](#0.2-converting-txt-to-csv-and-caching-pre-processing-datasets-for-beeradvocate-and-ratebeer-and-data-cleaning) 
 
 - [**1. Compare RateBeers and BeerAdvocate**](#1-compare-ratebeers-and-beeradvocate)
   - [1.1 Distribution of ratings and reviews per user between BeerAdvocate and RateBeer](#1.1-distribution-of-ratings-and-reviews-per-user-between-beeradvocate-and-ratebeer)
@@ -63,6 +61,10 @@ Sip into the world of beer seasons with our DataStory – Grab your brew and div
 - [**7. Causality Check on ABV, SRM, IBU**](#7-causality-check-on-abv-srm-ibu)
 
 - [**8. Best Beers**](#8-best-beers)
+  - [8.1 Seasonality estimation of beers style](#8.1-seasonality-of-beers-style)
+  - [8.2 Region specitiy of a high seasonality beer style](8.2-region-specificity-of-a-high-seasonality-beer-style)
+
+- [**9.Conclusion**](#9-conclusion)
 
 # Abstract
 Winter is a season for brown beers, high on alcohol to warm us up, while summer makes us crave a lighter blond beer. But do we really observe trends based on seasons? In fact, each individual may tend to consume different beers based on its mood or feeling influenced by the season. A study of a high variety of beer styles may help to see if some beers have variable success rate accross the year or inversely have a constant consumption rate. After identifying the seasonal tendencies, we observed if those tendencies varied accross the year, i.e. is the beer success ephemere or anchored in the consumption habits of beer drinkers? Seeing this seasonal variability, we then tried to identify the best features in order to predict the seasonality of a beer. Once those features have been identified, the location was studied in order to evaluate the north america, europa and oceania beer consumption habits and their specificities. Once the seasonality was identified, the next step was to predict it by implementing a classifier model based the beer characteristics. Finally, to conclude the quest of seasonality, the most summer and winter trendy beers were identified.
@@ -102,7 +104,7 @@ For the seasonal variability of ratings, we firstly identified the most rated st
 
 - The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patterns of season-dependency.
 
-- With statistical analysis such as t-test we analysed which feature such as alcool degree, appearance, aroma, palate, taste, abv (alcool degree), ibu (bitterness index) or srm (color of the beer) have the highest impact on the seasonality of the beer. This will help us to identify which kind of beers are prefered at which time of the year.
+- With statistical analysis such as t-test and statistical model such as Seasonal-Trend decomposition using LOESS (STL) we analysed which feature such as alcool degree, appearance, aroma, palate, taste, abv (alcool degree), ibu (bitterness index) or srm (color of the beer) have the highest impact on the seasonality of the beer. This enables us to identify which kind of beers are prefered at which time of the year.
 
 - Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement this model, linear and polynomial regressions methods were performed. Those methods allowed to classify beers, based on its ABV, IBU and SRM values, as summer or winter beers.
 

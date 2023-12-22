@@ -98,6 +98,37 @@ def data_reading(FOLDER_BA, FOLDER_RB):
 
     return beers_ba, breweries_ba, users_ba, ratings_ba, beers_rb, breweries_rb, users_rb, ratings_rb
 
+def data_cleaning(user_ratings):
+    """
+    Perform data cleaning operations on the user ratings DataFrame.
+    This function cleans the DataFrame by removing unnecessary columns, renaming columns for clarity,
+    handling missing values in the 'abv' (alcohol by volume) column by imputing with the mean 'abv' of the corresponding style,
+    and dropping rows with missing 'location' data.
+    Args:
+        user_ratings (pd.DataFrame): The DataFrame containing user ratings and other related information.
+    Returns:
+        pd.DataFrame: The cleaned DataFrame.
+    """
+    # Remove unnecessary columns
+    user_ratings.drop(['Unnamed: 0', 'user_name_y'], axis=1, inplace=True)
+
+    # Rename columns for clarity
+    user_ratings.rename(columns={'user_name_x': 'user_name'}, inplace=True)
+
+    # Calculate the percentage of missing values in the 'abv' column
+    missing_values_abv = user_ratings['abv'].isna().mean() * 100
+
+    # Impute missing 'abv' values with the mean 'abv' of the corresponding beer style
+    style_mean_abv = user_ratings.groupby('style')['abv'].transform('mean')
+    user_ratings['abv'].fillna(style_mean_abv, inplace=True)
+
+    # Calculate the percentage of missing values in the 'location' column
+    missing_values_location = user_ratings['location'].isna().mean() * 100
+
+    # Drop rows where 'location' data is missing
+    user_ratings = user_ratings.dropna(subset=['location'])
+
+    return user_ratings
 
 def data_pre_processing(data_to_merge1, data_to_merge2):
     """
@@ -117,6 +148,7 @@ def data_pre_processing(data_to_merge1, data_to_merge2):
     user_ratings['year'] = user_ratings['date'].dt.year
 
     user_ratings['year_month'] = user_ratings['date'].dt.to_period('M')
+    user_ratings = data_cleaning(user_ratings)
     return user_ratings
 
 
