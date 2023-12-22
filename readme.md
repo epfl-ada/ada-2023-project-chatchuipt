@@ -1,5 +1,6 @@
 # Every Season is Beerable
 
+
 Sip into the world of beer seasons with our DataStory – Grab your brew and dive in: [here](https://shobashu.github.io/ChatChuiPT.github.io/) !!!
 
 ## **Table of Contents** <a name="table-of-contents"></a>
@@ -101,7 +102,7 @@ Winter is a season for brown beers, high on alcohol to warm us up, while summer 
 - If so, what are their characteristics ?
 
 # Proposed additional datasets (if any) 
-- No additional dataset to provide.
+- Two additionals datasets were provided to complete the data with the bitterness index and the color index of the beer. The Bitterness dataset (called IBU) and the colorness (called SRM) were found based on multiple site comparisons and ChatGPT to confirm the reliability of the results. Note that those values are only an approximation of the real indexes but due to the binary classification (and not continuous prediction), the error that could be added is reasonable as we exclude beers with intermediate bitterness and/or color and only focus on extreme values for the seasonality.
 
 # Methods
 - For each ratings, the location was added with a union operation between the ratings and the users dataset (based on user_id). The dates were also discretised in months and years in order to perfom a monthly analysis. Ratings with missing abv index were completed with the average abv of the corresponding beer style. Ratings with missing location, date or beer style were dropped from the dataset.
@@ -112,13 +113,10 @@ For the seasonal variability of ratings, we firstly identified the most rated st
 
 - The datasets were now ready to be analysed more in depth. The monthly rating number was plotted to have an idea of the overall rating dynamic that could influence the micro analysis to be done afterwards. The monthly distribution of the IPA, Pilsner and Belgian Strong Ale reviews was studied to observe the first patterns of season-dependency.
 
-- With statistical analysis such as t-test we will analyse which feature such as alcool degree, appearance, aroma, palate, taste, or even users' location have the highest impact on the seasonality of the beer. This will help us to identify which kind
-of beers are prefered at which time of the year. Then, a splitting of the dataset into clients types A and B will be conducted and similar
-analysis as before will be performed to see if at least 2 discernable categories of consummers arise.
+- With statistical analysis such as t-test we analysed which feature such as alcool degree, appearance, aroma, palate, taste, abv (alcool degree), ibu (bitterness index) or srm (color of the beer) have the highest impact on the seasonality of the beer. This will help us to identify which kind of beers are prefered at which time of the year.
 
-- To complement the findings, a sentimental analysis on the comments will be performed to see if the ratings and the comments' postivity correlate to each others and if they also vary with the seasons. This would indicate a clear change of mood from the users in addition to their rating frequency. The sentimental analysis of the comments will be performed using an already trained machine learning classifier that could be downloaded on the site : https://huggingface.co/tasks/text-classification. This classifier assigns a grade based on the degree of positivity of the comment.
+- Once the parameters such as ABV, IBU and SRM have been explored, a study of their interdependencies is necessary to evaluate their predictability power. This was performed by measuring the intercorrelations between those parameters using scatter plots and correlation coefficient. The information to extract from this will be very helpful to perform a seasonality prediction model. Finally, to implement a this model, linear and polynomial regressions methods were performed. Those methods allowed to predict if a beer, based on its ABV, IBU and SRM values would tend to be more like a summer or a winter beer.
 
-- Finally for a global view, we will inspect how the breweries proposal vary and converge to specific beers using t-test as well. This could show the beweries offer's variability depending on their targetted clients.
 
 # Timeline and organization within the team
 
@@ -147,5 +145,14 @@ gantt
 		Everyone                      :after t1, 2w
 ```
 
+# Install requirements
 
+Now that you have a good overview of the project, here are the command lines to set
+an adequate python environment to run this project :
+
+*create the environment: python -m venv .venv
+
+*activate the environment: source /.venv/bin/activate.sh
+
+*install the packages: pip install -r requirements.txt
 
